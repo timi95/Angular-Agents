@@ -11,23 +11,25 @@ export class AppComponent implements OnInit {
   // context = CanvasRenderingContext2D;
   @ViewChild('myCanvas', { static: true })
   canvasRef: ElementRef;
-  turtle = new Turtle();
+  turtle:Turtle ;
 
   // Animation sequence
   
   constructor(){
     setTimeout(this.animate, 1000);
+    // let turtle = new Turtle();
   }
 
-  animate(){
-    this.turtle.wander();
+  animate(turtle:Turtle){
+    turtle.wander();
   }
 
   ngOnInit(){
     // myCanvas = <HTMLCanvasElement>document.getElementById('cnvs');
     // this.context = this.myCanvas.getContext('2d');
     // this.turtle.draw();
-
+    this.turtle = new Turtle();
+    this.animate(this.turtle);
     let ctx: CanvasRenderingContext2D =
     this.canvasRef.nativeElement.getContext('2d');
 

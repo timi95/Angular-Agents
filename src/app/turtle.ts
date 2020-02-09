@@ -56,11 +56,11 @@ export class Turtle {
   // ************** Turtle behaviours *******************
 
   // A random walk for this turtle
-  public wander(){
+  wander(){
     console.log(`${this.myName} the turtle is wandering`);
     
   }
-  public follow( myPosition:number[], followingPosition:number[] ){
+  follow( myPosition:number[], followingPosition:number[] ){
     console.log(`${this.myName} the turtle is following: ${followingPosition}`);
     
   }
