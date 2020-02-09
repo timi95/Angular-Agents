@@ -18,7 +18,7 @@ export class Turtle {
 
  constructor() { 
     this.myName = this.generateName();
-    console.log(`A new Turtle ${this.myName} was born !`); 
+    console.log(`A new Turtle ${this.myName.toUpperCase()} was born !`); 
     // this.draw();
   }
 
@@ -33,7 +33,7 @@ export class Turtle {
   }
 
   public draw(x?:number, y?:number){
-    console.log(`Turtle ${this.myName} has been drawn !`);
+    console.log(`Turtle ${this.myName.toUpperCase()} has been drawn !`);
     
   }
 
@@ -57,7 +57,7 @@ export class Turtle {
 
   // A random walk for this turtle
   wander(){
-    console.log(`${this.myName} the turtle is wandering`);
+    console.log(`${this.myName.toUpperCase()} the turtle is wandering`);
     
   }
   follow( myPosition:number[], followingPosition:number[] ){
