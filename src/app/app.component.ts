@@ -14,18 +14,32 @@ export class AppComponent implements OnInit,OnDestroy {
 
   // Animation sequence
   
-  constructor(private ngZone: NgZone) {
+  constructor() {
     // setTimeout(this.animate, 1000);
     // let turtle = new Turtle();
   }
 
-
+//
 
   ngOnInit(){
     this.running = true;
     this.turtle = new Turtle();
-    // this.animate(this.turtle);
+    this.animate(this.turtle);
     // this.ngZone.runOutsideAngular(() => this.animate(this.turtle));
+  }
+  animate(turtle?: Turtle): any {
+    // Check that we're still running.
+    if (!this.running) {
+      return;
+    }
+    
+    let i = 0;
+    requestAnimationFrame(()=> {
+      this.animate;
+      i+=1;
+      console.log(i);
+      
+    } )
   }
   ngOnDestroy() {
     this.running = false;
