@@ -49,7 +49,7 @@ ngOnDestroy() {
   ngOnInit(){
     this.running = true;
     this.turtle = new Turtle();
-    this.animate(this.turtle);
+    // this.animate(this.turtle);
     // this.ngZone.runOutsideAngular(() => this.animate(this.turtle));
     
   }
@@ -63,12 +63,24 @@ ngOnDestroy() {
   }
   
   private sketch(p: any) {
+    let a;
     p.setup = () => {
       p.createCanvas(700, 600);
+      a = p.height /2;
     };
   
     p.draw = () => {
-      p.ellipse(50, 50, 80, 80)
+      // if (p.mouseIsPressed) {
+      //   p.fill(0);
+      // } else {
+      //   p.fill(255);
+      // }
+      // p.ellipse(p.mouseX, p.mouseY, 80, 80);
+      a -=1;
+      p.ellipse((p.width)/2,a,80,80);
+      if ( a < -50 ) {
+        a = p.height
+      }
     };
   }  
 
