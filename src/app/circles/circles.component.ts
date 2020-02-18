@@ -23,11 +23,6 @@ export class CirclesComponent implements OnInit {
     this.createCanvas();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
-  }
 
   animate(turtle?: Turtle): any {
     // Check that we're still running.

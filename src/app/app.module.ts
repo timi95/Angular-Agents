@@ -6,11 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CirclesComponent } from './circles/circles.component';
+import { LinearComponent } from './linear/linear.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CirclesComponent
+    CirclesComponent,
+    LinearComponent
   ],
   imports: [ BrowserModule, FormsModule, AppRoutingModule ],
   providers: [],
