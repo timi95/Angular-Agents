@@ -15,6 +15,8 @@ export class AppComponent implements OnInit,OnDestroy {
   @ViewChild('myCanvas', { static: true })
   canvasRef: ElementRef;
   turtle:Turtle ;
+  innerWidth:number;
+  innerHeight:number;
 
   // Animation sequence
   
@@ -23,6 +25,12 @@ export class AppComponent implements OnInit,OnDestroy {
     // let turtle = new Turtle();
     this.createCanvas();
     
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
   }
 
 //
@@ -63,24 +71,31 @@ ngOnDestroy() {
   }
   
   private sketch(p: any) {
-    let a;
+    let movingUP;
+
+
     p.setup = () => {
-      p.createCanvas(700, 600);
-      a = p.height /2;
+      p.createCanvas(p.windowWidth, 100).parent('circle-canvas');
+      movingUP = p.height /2;
     };
   
+
+    p.windowResized = () => {
+      p.resizeCanvas(p.windowWidth, 100);
+    }
+
     p.draw = () => {
-      // if (p.mouseIsPressed) {
-      //   p.fill(0);
-      // } else {
-      //   p.fill(255);
-      // }
-      // p.ellipse(p.mouseX, p.mouseY, 80, 80);
-      a -=1;
-      p.ellipse((p.width)/2,a,80,80);
-      if ( a < -50 ) {
-        a = p.height
+      if (p.mouseIsPressed) {
+        p.fill(0);
+      } else {
+        p.fill(255);
       }
+      p.ellipse(p.mouseX, p.mouseY, 80, 80);
+      // movingUP -=2;
+      // p.ellipse((p.width)/2, movingUP,80,80);
+      // if ( movingUP < -50 ) {
+      //   movingUP = p.height
+      // }
     };
   }  
 
