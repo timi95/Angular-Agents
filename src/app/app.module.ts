@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CirclesComponent } from './circles/circles.component';
 import { LinearComponent } from './linear/linear.component';
+import { RandomWalkerComponent } from './random-walker/random-walker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CirclesComponent,
-    LinearComponent
+    LinearComponent,
+    RandomWalkerComponent
   ],
   imports: [ BrowserModule, FormsModule, AppRoutingModule ],
   providers: [],
