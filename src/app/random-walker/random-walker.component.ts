@@ -43,11 +43,11 @@ private sketch(p: any) {
     y = p.height /2;
     gameOn = true;
 
-    max = 4;
-    min = -4;
+    max = 3;
+    min = -3;
 
-    max2 = 6;
-    min2 = -6;
+    max2 = 3;
+    min2 = -3;
 
     intervalX = Math.random() * (max2 - min2) + min2;
     intervalY = Math.random() * (max - min) + min;
