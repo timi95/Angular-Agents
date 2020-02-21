@@ -9,7 +9,9 @@ import * as p5 from 'p5';
   styleUrls: ['./walker-objectified.component.css']
 })
 export class WalkerObjectifiedComponent implements OnInit {
-
+  @ViewChild('canvas', { static: true }) 
+  canvas: ElementRef<HTMLCanvasElement>;
+  private ctx: CanvasRenderingContext2D;
 
 
   constructor() {
@@ -18,6 +20,10 @@ export class WalkerObjectifiedComponent implements OnInit {
 
 
   ngOnInit() {
+    this.ctx = this.canvas.nativeElement.getContext('2d');
   }
+  
+
+  animate(): void {}
 
 }
