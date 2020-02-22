@@ -63,8 +63,8 @@ private sketch(p: any) {
 
 
 
-  console.log(`width: ${p.width}, height:${p.height}`);
-  console.log(`X: ${x}, Y:${y}`);
+  // console.log(`width: ${p.width}, height:${p.height}`);
+  // console.log(`X: ${x}, Y:${y}`);
 
   p.background(220);
 
