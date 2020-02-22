@@ -13,12 +13,11 @@ export class WalkerObjectifiedComponent implements OnInit {
   @ViewChild('canvas', { static: true }) 
   canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D;
-  // private ngZone: NgZone;
   private x; private y; private width; private height;
   private squares = [];
 
   constructor(private ngZone: NgZone) {
-    // this.ngZone.runOutsideAngular(() => this.animate());
+    // ngZone.runOutsideAngular(() => this.animate());
  }
 
 
@@ -32,17 +31,18 @@ export class WalkerObjectifiedComponent implements OnInit {
       this.squares.push(new Square(this.ctx));
     }
     // this.animate();
+    this.ngZone.runOutsideAngular(() => this.animate());
+    
   }
   
 
   animate() {  
-    const id = requestAnimationFrame(this.animate);
     // this.ctx.fillStyle = 'red';  
     // const square = new Square(this.ctx);  
-
+    
     // square.draw(5, 1, 25);  
     // this.squares[index].move(1, 30);
-
+    
     this.ctx.clearRect(0, 0, this.width, this.height);
     setInterval(() => {
       this.squares.forEach((square: Square) => {
@@ -50,6 +50,7 @@ export class WalkerObjectifiedComponent implements OnInit {
       });
     }, 200);
     
+    const id = requestAnimationFrame(this.animate);
   }
 
 

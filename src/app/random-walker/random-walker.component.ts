@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import * as p5 from 'p5';
 
 @Component({
@@ -11,8 +11,9 @@ export class RandomWalkerComponent implements OnInit {
 
   
 
-  constructor() {
-    this.createCanvas();
+  constructor(ngZone: NgZone ) {
+    ngZone.runOutsideAngular(() =>  this.createCanvas() );
+
  }
 
  private createCanvas() {
@@ -76,12 +77,12 @@ private sketch(p: any) {
 
   //   x boundary check
   if( x > p.width ){
-    console.log(" x > width ");
+    // console.log(" x > width ");
     x = 0; 
   }
 
   if( x < 0 ){
-    console.log(" x < 0 ");
+    // console.log(" x < 0 ");
     x = p.width;
   }
     
