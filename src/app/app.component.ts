@@ -37,7 +37,7 @@ export class AppComponent implements OnInit,OnDestroy {
   
   
     p.setup = () => {
-      p.createCanvas(p.windowWidth, 100).parent('experiment-canvas');
+      // p.createCanvas(p.windowWidth, 100).parent('experiment-canvas');
     };
   
   
