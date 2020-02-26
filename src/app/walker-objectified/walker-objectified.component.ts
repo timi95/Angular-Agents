@@ -9,45 +9,42 @@ import * as p5 from 'p5';
   styleUrls: ['./walker-objectified.component.css'],
   styles: ['canvas { border-style: solid }']
 })
-export class WalkerObjectifiedComponent implements OnInit,AfterViewInit {
+export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas', { static: true }) 
-  canvas: ElementRef<HTMLCanvasElement>;
-  private ctx: CanvasRenderingContext2D;
+  private canvas: ElementRef<HTMLCanvasElement>;
+  private ctx: CanvasRenderingContext2D ;
+
   private x; private y; private width; private height;
   private squares = [];
 
-  constructor(private ngZone: NgZone, ctx?: CanvasRenderingContext2D ) {
+  constructor(private ngZone: NgZone) {
     // ngZone.runOutsideAngular(() => this.animate());
-    this.ctx = this.canvas.nativeElement.getContext('2d');
-    console.log("CTX in animate() : ",ctx," This.ctx:",this.ctx);
-
-    this.animate(this.ctx);
+    // this.animate();
+    
  }
 
- ngOnInit(){
+ ngAfterViewInit(){
   this.ctx = this.canvas.nativeElement.getContext('2d');
-  console.log("ctx onInit:",this.ctx);
-  
+  console.log("this is ctx",this.ctx);
+
  }
 
-  ngAfterViewInit() {
-    this.ctx = this.canvas.nativeElement.getContext('2d');
+  ngOnInit() {
+    // this.ctx = this.canvas.nativeElement.getContext('2d');
     // this.ctx.fillRect(this.x, this.y, this.width, this.height);
     // this.ctx.fillStyle = 'red';  
     // this.ctx.fillRect(0, 0, 50, 50);
     // this.ctx.strokeRect(z * x, z * y, z, z);
-    for (let index = 0; index < 1; index++) {
-      this.squares.push(new Square(this.ctx));
-    }
+    // for (let index = 0; index < 1; index++) {
+    //   this.squares.push(new Square(this.ctx));
+    // }
     // this.animate();
     // this.ngZone.runOutsideAngular(() => this.animate());
     
   }
   
 
-  animate(ctx?: CanvasRenderingContext2D) {  
-    // console.log("CTX in animate() : ",ctx," This.ctx:",this.ctx);
-    
+  animate() {  
     // this.ctx.fillStyle = 'red';  
     // const square = new Square(this.ctx);  
     
