@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, OnDestroy, NgZone, HostBinding, HostListener } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef, OnDestroy, NgZone, HostBinding, HostListener, Input } from '@angular/core';
 import { Turtle } from '../turtle';
 import * as p5 from 'p5';
 
@@ -14,78 +14,71 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
   private canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D ;
 
-  private x; private y; private width; private height;
-  private squares = [];
+  private count = 0;
+  private x; private y; 
+  // setting a width and height for the canvas
+  @Input() public width = 400;
+  @Input() public height = 400;
+  
+  private squares:Square[] = [];
 
-  constructor(private ngZone: NgZone) {
-    // ngZone.runOutsideAngular(() => this.animate());
-    // this.animate();
-    
+  constructor(private ngZone: NgZone) {}
+
+  ngAfterViewInit(){
+    // get the context
+    const canvasEl: HTMLCanvasElement = this.canvas.nativeElement;
+    this.ctx = canvasEl.getContext('2d');
+
+    // set the width and height
+    canvasEl.width = this.width;
+    canvasEl.height = this.height;
+
+    // push one square into the squares array
+    this.squares.push(new Square(this.ctx));
+
+    this.ngZone.runOutsideAngular(() => this.animate());
  }
+ 
+ 
+  animate() {  
+    // clear the screen before any drawing is done
+    this.ctx.clearRect(0,0, this.width,this.height);
+    this.squares[0].moveRight();
 
- ngAfterViewInit(){
-  this.ctx = this.canvas.nativeElement.getContext('2d');
-  console.log("this is ctx",this.ctx);
+    console.log(this.squares);
 
- }
 
-  ngOnInit() {
-    // this.ctx = this.canvas.nativeElement.getContext('2d');
-    // this.ctx.fillRect(this.x, this.y, this.width, this.height);
-    // this.ctx.fillStyle = 'red';  
-    // this.ctx.fillRect(0, 0, 50, 50);
-    // this.ctx.strokeRect(z * x, z * y, z, z);
-    // for (let index = 0; index < 1; index++) {
-    //   this.squares.push(new Square(this.ctx));
-    // }
-    // this.animate();
-    // this.ngZone.runOutsideAngular(() => this.animate());
-    
+    window.requestAnimationFrame(()=> this.animate() );
   }
   
-
-  animate() {  
-    // this.ctx.fillStyle = 'red';  
-    // const square = new Square(this.ctx);  
+  
+  ngOnInit() {
     
-    // square.draw(5, 1, 25);  
-    // this.squares[index].move(1, 30);
-    
-    // this.ctx.clearRect(0, 0, this.width, this.height);
-    // this.squares.forEach((square: Square) => {
-    //   square.moveRight();
-    // });
-    // setInterval(() => {
-     
-    // }, 200);
-    
-    // const id = requestAnimationFrame(this.animate);
-    // requestAnimationFrame(this.animate);
   }
-
 
 
 }
 
 export class Square {
- private color = 'blue';
+  private color = 'red';
   private x = 0;
   private y = 0;
-  private z = 30;
+  private z = 3;
 
   constructor(private ctx: CanvasRenderingContext2D) {}
 
 
 
   moveRight() {
-    this.x++;
-    this.ctx.clearRect(this.z * this.x, this.z * this.y, this.z, this.z);
+    this.x+=2;
+    if(this.x > 400)
+      this.x = 0;
     this.draw();
   }
-
-  private draw() {
+  
+  draw() {
     this.ctx.fillStyle = this.color;
-    this.ctx.strokeRect(this.z * this.x, this.z * this.y, this.z, this.z);
+    this.ctx.fillRect(this.x, this.y, 40, 40);
   }
 
 
