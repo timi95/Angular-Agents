@@ -35,7 +35,7 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
 
     // push squares into the squares array
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx));     
+      this.squares.push(new Square(this.ctx, this.width, this.height));     
     }
 
     this.ngZone.runOutsideAngular(() => this.animate());
@@ -80,16 +80,25 @@ export class Square {
   private min;
   private max2;
   private min2;
+  private intervalX;
+  private intervalY;
 
-  constructor(private ctx: CanvasRenderingContext2D) {
+
+  
+  constructor(private ctx: CanvasRenderingContext2D, private width?:number, private height?:number) {
     this.max = 3;
     this.min = -3;
-
+    
     this.max2 = 3;
     this.min2 = -3;
+    setInterval( ()=> this.minMaxSetup(), 1000);
   }
-
-
+  
+  
+  minMaxSetup() {
+    this.intervalX = Math.random() * (this.max2 - this.min2) + this.min2;
+    this.intervalY = Math.random() * (this.max - this.min) + this.min;
+  }
 
   moveRight() {
     this.x+=2;
@@ -97,8 +106,27 @@ export class Square {
   }
 
   moveRandomly() {
-    this.x += Math.random() * (this.max2 - this.min2) + this.min2;
-    this.y += Math.random() * (this.max - this.min) + this.min;
+    this.x += this.intervalX;
+    this.y += this.intervalY;
+
+
+    if (this.x < 0) {
+      this.x = 0;
+    }
+
+    if (this.y < 0) {
+      this.y = 0;
+    }
+
+
+    if (this.x > this.width-40) {
+      this.x = this.width-40;
+    }
+
+    if (this.y > this.height-40) {
+      this.y = this.height-40;
+    }
+
     this.draw();
   }
   
