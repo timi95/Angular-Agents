@@ -33,8 +33,10 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
     canvasEl.width = this.width;
     canvasEl.height = this.height;
 
-    // push one square into the squares array
-    this.squares.push(new Square(this.ctx));
+    // push squares into the squares array
+    for (let index = 0; index < 3; index++) {
+      this.squares.push(new Square(this.ctx));     
+    }
 
     this.ngZone.runOutsideAngular(() => this.animate());
  }
@@ -43,14 +45,22 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
   animate() {  
     // clear the screen before any drawing is done
     this.ctx.clearRect(0,0, this.width,this.height);
-    this.squares[0].moveRight();
 
-    console.log(this.squares);
+    // move each of the squares
+    this.squares.forEach( sq => {
+      sq.moveRandomly();
+    })
+
 
 
     window.requestAnimationFrame(()=> this.animate() );
   }
   
+  reset() {
+    this.squares.forEach( sq =>{
+      sq.resetPositions();
+    })
+  }
   
   ngOnInit() {
     
@@ -65,21 +75,43 @@ export class Square {
   private y = 0;
   private z = 3;
 
-  constructor(private ctx: CanvasRenderingContext2D) {}
+
+  private max;
+  private min;
+  private max2;
+  private min2;
+
+  constructor(private ctx: CanvasRenderingContext2D) {
+    this.max = 3;
+    this.min = -3;
+
+    this.max2 = 3;
+    this.min2 = -3;
+  }
 
 
 
   moveRight() {
     this.x+=2;
-    if(this.x > 400)
-      this.x = 0;
+    this.draw();
+  }
+
+  moveRandomly() {
+    this.x += Math.random() * (this.max2 - this.min2) + this.min2;
+    this.y += Math.random() * (this.max - this.min) + this.min;
     this.draw();
   }
   
   draw() {
-    this.ctx.fillStyle = this.color;
+    this.ctx.fillStyle = 'red' //`rgba(${this.x},${this.y},${this.z},1)`;
     this.ctx.fillRect(this.x, this.y, 40, 40);
+    console.log('x: ',this.x, 'y: ',this.y);
+    
   }
 
+  resetPositions(){
+    this.x = 0;
+    this.y = 0;
+  }
 
 }
