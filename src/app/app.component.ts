@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, NgZone, HostBinding, HostListener } from '@angular/core';
 import { Turtle } from './turtle';
 import * as p5 from 'p5';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +24,12 @@ export class AppComponent implements OnInit,OnDestroy {
 
   // Animation sequence
   
-  constructor() {
+  constructor(private router: Router) {
+    let path = localStorage.getItem('path');
+    if(path) {
+      localStorage.removeItem('path');
+      this.router.navigate([path]);
+    }
      this.createCanvas();
   }
 

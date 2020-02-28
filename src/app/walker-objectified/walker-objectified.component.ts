@@ -13,6 +13,7 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas', { static: true }) 
   private canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D ;
+  private animationFrameID:number;
 
   private count = 0;
   private x; private y; 
@@ -53,17 +54,25 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
 
 
 
-    window.requestAnimationFrame(()=> this.animate() );
+    this.animationFrameID = requestAnimationFrame(()=> this.animate() );
+    console.log("frame ID: ",this.animationFrameID);
+    
   }
   
   reset() {
     this.squares.forEach( sq =>{
       sq.resetPositions();
-    })
+    });
+    this.ngZone.runOutsideAngular(() => this.animate());
+    // this.animationFrameID = requestAnimationFrame(()=> this.animate() );
+  }
+
+  stopAnimation() {
+    cancelAnimationFrame(this.animationFrameID);
   }
   
   ngOnInit() {
-    
+    cancelAnimationFrame(this.animationFrameID);
   }
 
 
