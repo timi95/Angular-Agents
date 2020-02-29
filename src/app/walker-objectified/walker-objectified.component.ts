@@ -39,6 +39,8 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
       this.squares.push(new Square(this.ctx, this.width, this.height));     
     }
 
+
+
     this.ngZone.runOutsideAngular(() => this.animate());
  }
  
@@ -72,7 +74,7 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
   }
   
   ngOnInit() {
-    cancelAnimationFrame(this.animationFrameID);
+
   }
 
 
@@ -95,12 +97,13 @@ export class Square {
 
   
   constructor(private ctx: CanvasRenderingContext2D, private width?:number, private height?:number) {
-    this.max = 3;
-    this.min = -3;
-    
-    this.max2 = 3;
-    this.min2 = -3;
     setInterval( ()=> this.minMaxSetup(), 1000);
+    
+    this.max = 1;
+    this.min = -1;
+    
+    this.max2 = 1;
+    this.min2 = -1;
   }
   
   
@@ -115,6 +118,7 @@ export class Square {
   }
 
   moveRandomly() {
+
     this.x += this.intervalX;
     this.y += this.intervalY;
 
