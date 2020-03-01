@@ -104,6 +104,7 @@ export class Square {
     
     this.max2 = 1;
     this.min2 = -1;
+    
   }
   
   
