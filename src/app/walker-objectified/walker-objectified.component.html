@@ -1,4 +1,13 @@
 <!-- <div id="walker-objects-canvas"></div> -->
-<canvas #canvas width="600" height="300"></canvas>
-<button (click)="reset()">Reset</button> 
-<button (click)="stopAnimation()">Stop</button>
+<div class="canvas-row">
+    <div>
+        <canvas #canvas ></canvas>
+        <button (click)="reset()">Reset</button> 
+        <button (click)="stopAnimation()">Stop</button>
+    </div>
+    <div>
+        <canvas #canvas2 ></canvas>
+        <button (click)="reset()">Reset</button> 
+        <button (click)="stopAnimation()">Stop</button>
+    </div>
+</div>
