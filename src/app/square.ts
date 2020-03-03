@@ -17,7 +17,10 @@ export class Square {
   
   
     
-    constructor(private ctx: CanvasRenderingContext2D, private width?:number, private height?:number) {
+    constructor(private ctx: CanvasRenderingContext2D, 
+        private width?:number, 
+        private height?:number,
+        private color_input?:string) {
       setInterval( ()=> this.minMaxSetup(), 1000);
       
       this.max = 1;
@@ -25,7 +28,9 @@ export class Square {
       
       this.max2 = 1;
       this.min2 = -1;
-  
+    
+      if(this.color_input != null)
+      this.color = this.color_input;
     }
     
     
@@ -66,7 +71,7 @@ export class Square {
     }
     
     draw() {
-      this.ctx.fillStyle = 'red' //`rgba(${this.x},${this.y},${this.z},1)`;
+      this.ctx.fillStyle = this.color //`rgba(${this.x},${this.y},${this.z},1)`;
       this.ctx.fillRect(this.x, this.y, this.square_width, this.square_height);
       console.log('x: ',this.x, 'y: ',this.y);
       
