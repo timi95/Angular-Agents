@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, NgZone, HostBinding, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, NgZone, HostBinding, HostListener, Input } from '@angular/core';
 import { Turtle } from './turtle';
 import * as p5 from 'p5';
+import { Square } from './square';
 
 
 @Component({
@@ -24,7 +25,18 @@ import * as p5 from 'p5';
     ]
 })
 export class BlueWalker implements OnInit,OnDestroy {
+    @ViewChild('canvas', { static: true }) 
+    private canvas: ElementRef<HTMLCanvasElement>;
+    private ctx: CanvasRenderingContext2D ;
+    private animationFrameID:number;
 
+    private count = 0;
+    private x; private y; 
+    // setting a width and height for the canvas
+    @Input() public width; 
+    @Input() public height;
+    
+    private squares:Square[] = [];
 
 
   ngOnDestroy(): void {
@@ -37,8 +49,9 @@ export class BlueWalker implements OnInit,OnDestroy {
 
   // Animation sequence
   
-  constructor() {
-  }
+  constructor(private ngZone: NgZone) {
+  
+}
 
 
   
