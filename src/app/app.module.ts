@@ -9,6 +9,8 @@ import { CirclesComponent } from './circles/circles.component';
 import { LinearComponent } from './linear/linear.component';
 import { RandomWalkerComponent } from './random-walker/random-walker.component';
 import { WalkerObjectifiedComponent } from './walker-objectified/walker-objectified.component';
+import { BlueWalker } from './blue-walker.component';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { WalkerObjectifiedComponent } from './walker-objectified/walker-objectif
     CirclesComponent,
     LinearComponent,
     RandomWalkerComponent,
-    WalkerObjectifiedComponent
+    WalkerObjectifiedComponent,
+    BlueWalker
   ],
   imports: [ BrowserModule, FormsModule, AppRoutingModule ],
   providers: [],
