@@ -15,12 +15,14 @@ export class Square {
     private intervalX;
     private intervalY;
   
-  
+
     
-    constructor(private ctx: CanvasRenderingContext2D, 
-        private width?:number, 
-        private height?:number,
-        private color_input?:string) {
+    constructor(
+    private ctx: CanvasRenderingContext2D, 
+    private width?:number, 
+    private height?:number,
+    private color_input?:string) {
+
       setInterval( ()=> this.minMaxSetup(), 1000);
       
       this.max = 1;
@@ -33,6 +35,16 @@ export class Square {
       this.color = this.color_input;
     }
     
+
+    generateTargetPoint(){
+        let targetX;
+        let targetY;
+
+        targetX = Math.random() * (this.square_width ) + 1 ;
+        targetY = Math.random() * (this.square_height ) + 1 ;
+
+        return [targetX, targetY] ;
+    }
     
     minMaxSetup() {
       this.intervalX = Math.random() * (this.max2 - this.min2) + this.min2;
