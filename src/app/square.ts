@@ -36,7 +36,7 @@ export class Square {
     }
     
 
-    generateTargetPoint(){
+    generateTargetPoint() {
         let targetX;
         let targetY;
 
@@ -44,6 +44,16 @@ export class Square {
         targetY = Math.random() * (this.square_height ) + 1 ;
 
         return [targetX, targetY] ;
+    }
+
+    startToEndDifference( targetX , targetY ) {
+        let diffX;
+        let diffY;
+
+        diffX = (this.x - targetX);
+        diffY = (this.y -  targetY);
+
+        return [diffX, diffY];
     }
     
     minMaxSetup() {
