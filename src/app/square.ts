@@ -55,6 +55,11 @@ export class Square {
 
         return [diffX, diffY];
     }
+
+    magnitudeOfPoint(diffX, diffY) {
+        let magnitude = Math.sqrt( Math.pow(diffX,2) + Math.pow(diffY,2) );// root ( a^2 + b^2 ) = c
+        return magnitude;
+    }
     
     minMaxSetup() {
       this.intervalX = Math.random() * (this.max2 - this.min2) + this.min2;
