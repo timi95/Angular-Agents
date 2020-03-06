@@ -36,14 +36,13 @@ export class Square {
     }
     
 
-    generateTargetPoint() {
-        let targetX;
-        let targetY;
+    generateTargetPoint():TargetPoint {
+        let point:TargetPoint; 
+        
+        point.targetX = Math.random() * (this.square_width ) + 1 ;
+        point.targety = Math.random() * (this.square_height ) + 1 ;
 
-        targetX = Math.random() * (this.square_width ) + 1 ;
-        targetY = Math.random() * (this.square_height ) + 1 ;
-
-        return [targetX, targetY] ;
+        return point;
     }
 
     startToEndDifference( targetX , targetY ) {
@@ -64,7 +63,18 @@ export class Square {
 
     genratePath() {
         // generate arrays of length magnitude
+        let arrayX;
+        let arrayY;
+        
+        let targetPoint:TargetPoint = this.generateTargetPoint();
+
+
+        // arrayX = new Array();
         // each array contains values diffX/magnitude and diffY/magnitude respectively
+        return {
+            arrayX,
+            arrayY
+        }
     }
 
 
@@ -116,4 +126,10 @@ export class Square {
       this.y = 0;
     }
   
+  }
+
+
+  export interface TargetPoint {
+      targetX:number;
+      targety:number;
   }
