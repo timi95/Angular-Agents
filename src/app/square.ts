@@ -46,14 +46,14 @@ export class Square {
         return point;
     }
 
-    startToEndDifference( targetX , targetY ):DifferencePoint {
+    // this is incorrect
+    startToEndDifference():DifferencePoint {
+        let targetPoint:TargetPoint = this.generateTargetPoint();
         let difference:DifferencePoint;
 
-        // let diffX;
-        // let diffY;
 
-        difference.diffX = (this.x - targetX);
-        difference.diffY = (this.y -  targetY);
+        difference.diffX = (this.x - targetPoint.targetX);
+        difference.diffY = (this.y -  targetPoint.targetY);
 
         return difference;
     }
@@ -69,8 +69,8 @@ export class Square {
         let path: Path;
    
         
-        let targetPoint:TargetPoint = this.generateTargetPoint();
-        let difference:DifferencePoint = this.startToEndDifference(targetPoint.targetX, targetPoint.targetY);
+        // let targetPoint:TargetPoint = this.generateTargetPoint();
+        let difference:DifferencePoint = this.startToEndDifference();
         let magnitude:number = this.magnitudeOfPoint(difference.diffX, difference.diffY);
 
         // generate Array of size magnitude
@@ -144,8 +144,8 @@ export class Square {
 
 
 export interface TargetPoint {
-      targetX:number;
-      targetY:number;
+    targetX:number;
+    targetY:number;
 }
 
 export interface DifferencePoint {
