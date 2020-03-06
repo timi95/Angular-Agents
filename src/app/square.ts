@@ -16,6 +16,9 @@ export class Square {
     private intervalX;
     private intervalY;
   
+    private path;
+    private target;
+    private difference: DifferencePoint;
 
     
     constructor(
@@ -24,49 +27,69 @@ export class Square {
     private height?:number,
     private color_input?:string) {
 
-      setInterval( ()=> this.minMaxSetup(), 1000);
-      
-      this.max = 1;
-      this.min = -1;
-      
-      this.max2 = 1;
-      this.min2 = -1;
-    
-      if(this.color_input != null)
-      this.color = this.color_input;
+        setInterval( ()=> this.minMaxSetup(), 1000);
+
+        this.max = 1;
+        this.min = -1;
+
+        this.max2 = 1;
+        this.min2 = -1;
+
+        if(this.color_input != null)
+        this.color = this.color_input;
+
+        //   this.target = { targetX:this.width/2, targetY:this.height/2};
+        this.target = this.generateTargetPoint();
+        console.log("this is the target: ",this.target);
+        
+
+
+
+        this.path = this.generatePath();
+          console.log("path initialised as: ", this.path);
+        
+        this.difference = this.startToEndDifference();
+
     }
     
 
     generateTargetPoint():TargetPoint {
-        let point:TargetPoint; 
+        console.log("generate target ran !");
         
-        point.targetX = Math.random() * (this.square_width ) + 1 ;
-        point.targetY = Math.random() * (this.square_height ) + 1 ;
+        let target:TargetPoint = { targetX:0, targetY: 0}; 
+        
+        target.targetX = Math.floor(Math.random() * this.width-this.square_width) + 1 ;
+        target.targetY = Math.floor(Math.random() * this.height-this.square_height) + 1 ;
 
-        return point;
+        // target.targetX = 50;
+        // target.targetY = 40 ;
+
+        // console.log("generated Target: ",target);
+        
+        return target;
     }
 
     // this is incorrect
     startToEndDifference():DifferencePoint {
-        let targetPoint:TargetPoint = this.generateTargetPoint();
-        let difference:DifferencePoint;
+        let targetPoint:TargetPoint = this.target;
+        let difference:DifferencePoint = { diffX:0, diffY: 0}; 
 
 
-        difference.diffX = (this.x - targetPoint.targetX);
-        difference.diffY = (this.y -  targetPoint.targetY);
+        difference.diffX = (targetPoint.targetX - this.x);
+        difference.diffY = (targetPoint.targetY - this.y);
 
         return difference;
     }
 
     magnitudeOfPoint(diffX, diffY):number {
         let magnitude = Math.sqrt( Math.pow(diffX,2) + Math.pow(diffY,2) );// root ( a^2 + b^2 ) = c
-        return magnitude;
+        return Math.sqrt(magnitude);
     }
     
 
-    genratePath():Path {
+    generatePath():Path {
         // generate path with arrays of length magnitude
-        let path: Path;
+        let path: Path = { pathX:[], pathY:[] };
    
         
         // let targetPoint:TargetPoint = this.generateTargetPoint();
@@ -74,18 +97,16 @@ export class Square {
         let magnitude:number = this.magnitudeOfPoint(difference.diffX, difference.diffY);
 
         // generate Array of size magnitude
-        path.pathX = new Array(Math.ceil(magnitude));
-        // assign differential value to each element in the array
-        path.pathX.forEach(element => {
-            element = difference.diffX;
-        });
+        // console.log(Math.ceil(magnitude));
+        
+        // path.pathX = new Array(Math.ceil(magnitude));
+        for (let index = 0; index < Math.ceil(magnitude); index++) {
+            path.pathX.push( (difference.diffX/magnitude) );
+        }
 
-        // generate Array of size magnitude
-        path.pathY = new Array(Math.ceil(magnitude));
-        // assign differential value to each element in the array
-        path.pathY.forEach(element => {
-            element = difference.diffY;
-        })
+        for (let index = 0; index < Math.ceil(magnitude); index++) {
+            path.pathY.push(difference.diffY/magnitude);
+        }
 
         // each array contains values diffX/magnitude and diffY/magnitude respectively
         return path;
@@ -131,9 +152,71 @@ export class Square {
     draw() {
       this.ctx.fillStyle = this.color //`rgba(${this.x},${this.y},${this.z},1)`;
       this.ctx.fillRect(this.x, this.y, this.square_width, this.square_height);
-      console.log('x: ',this.x, 'y: ',this.y);
+    //   console.log('x: ',this.x, 'y: ',this.y);
       
     }
+
+
+    moveAlongPath() {
+        
+        if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
+            if ( this.x < this.target.targetX ) {
+                this.x += this.path.pathX[0];
+            } 
+
+            if ( this.y < this.target.targetY ) {
+                this.y += this.path.pathY[0];
+            } 
+
+        } 
+
+        // if ( this.y != this.target.targetY ) {
+        //     this.y += this.path.pathY[0];
+        // }
+
+
+
+        // if ( this.path.pathX.length > 0 ) {
+        //     this.x += this.path.pathX[0];
+        //     this.path.pathX.splice(this.path.pathX.length,1);
+        // }
+
+        // if ( this.path.pathy.length > 0 ) {
+        //     this.y += this.path.pathY[0];
+        //     this.path.pathY.splice(this.path.pathY.length,1);
+        // }
+
+
+        // if ( this.x == this.target.targetX && this.y == this.target.targetY ) {
+        //     this.target = this.generateTargetPoint();
+        //     this.path = this.generatePath();
+        // }
+
+
+
+//   boundary checks
+        if (this.x < 0) {
+            this.x = 0;
+        }
+    
+        if (this.y < 0) {
+            this.y = 0;
+        }
+    
+    
+        if (this.x > this.width-this.square_width) {
+            this.x = this.width-this.square_width;
+        }
+    
+        if (this.y > this.height-this.square_height) {
+            this.y = this.height-this.square_height;
+        }
+
+        this.draw();
+        // console.log('x: ',this.x, 'y: ',this.y);
+    }
+
+
   
     resetPositions(){
       this.x = 0;

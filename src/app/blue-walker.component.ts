@@ -80,13 +80,14 @@ animate() {
 
     // move each of the squares
     this.squares.forEach( sq => {
-      sq.moveRandomly();
+    //   sq.moveRandomly();
+    sq.moveAlongPath();
     })
 
 
 
     this.animationFrameID = requestAnimationFrame(()=> this.animate() );
-    console.log("frame ID: ",this.animationFrameID);
+    // console.log("frame ID: ",this.animationFrameID);
     
 }
 
