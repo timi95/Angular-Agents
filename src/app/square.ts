@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 
 export class Square {
     private color = 'red';
@@ -40,41 +41,54 @@ export class Square {
         let point:TargetPoint; 
         
         point.targetX = Math.random() * (this.square_width ) + 1 ;
-        point.targety = Math.random() * (this.square_height ) + 1 ;
+        point.targetY = Math.random() * (this.square_height ) + 1 ;
 
         return point;
     }
 
-    startToEndDifference( targetX , targetY ) {
-        let diffX;
-        let diffY;
+    startToEndDifference( targetX , targetY ):DifferencePoint {
+        let difference:DifferencePoint;
 
-        diffX = (this.x - targetX);
-        diffY = (this.y -  targetY);
+        // let diffX;
+        // let diffY;
 
-        return [diffX, diffY];
+        difference.diffX = (this.x - targetX);
+        difference.diffY = (this.y -  targetY);
+
+        return difference;
     }
 
-    magnitudeOfPoint(diffX, diffY) {
+    magnitudeOfPoint(diffX, diffY):number {
         let magnitude = Math.sqrt( Math.pow(diffX,2) + Math.pow(diffY,2) );// root ( a^2 + b^2 ) = c
         return magnitude;
     }
     
 
-    genratePath() {
-        // generate arrays of length magnitude
-        let arrayX;
-        let arrayY;
+    genratePath():Path {
+        // generate path with arrays of length magnitude
+        let path: Path;
+   
         
         let targetPoint:TargetPoint = this.generateTargetPoint();
+        let difference:DifferencePoint = this.startToEndDifference(targetPoint.targetX, targetPoint.targetY);
+        let magnitude:number = this.magnitudeOfPoint(difference.diffX, difference.diffY);
 
+        // generate Array of size magnitude
+        path.pathX = new Array(Math.ceil(magnitude));
+        // assign differential value to each element in the array
+        path.pathX.forEach(element => {
+            element = difference.diffX;
+        });
 
-        // arrayX = new Array();
+        // generate Array of size magnitude
+        path.pathY = new Array(Math.ceil(magnitude));
+        // assign differential value to each element in the array
+        path.pathY.forEach(element => {
+            element = difference.diffY;
+        })
+
         // each array contains values diffX/magnitude and diffY/magnitude respectively
-        return {
-            arrayX,
-            arrayY
-        }
+        return path;
     }
 
 
@@ -129,7 +143,17 @@ export class Square {
   }
 
 
-  export interface TargetPoint {
+export interface TargetPoint {
       targetX:number;
-      targety:number;
-  }
+      targetY:number;
+}
+
+export interface DifferencePoint {
+    diffX:number;
+    diffY:number;
+}
+
+export interface Path {
+    pathX:number[];
+    pathY:number[];
+}
