@@ -61,6 +61,13 @@ export class Square {
         return magnitude;
     }
     
+
+    genratePath() {
+        // generate arrays of length magnitude
+        // each array contains values diffX/magnitude and diffY/magnitude respectively
+    }
+
+
     minMaxSetup() {
       this.intervalX = Math.random() * (this.max2 - this.min2) + this.min2;
       this.intervalY = Math.random() * (this.max - this.min) + this.min;
