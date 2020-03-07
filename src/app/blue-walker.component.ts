@@ -85,6 +85,7 @@ animate() {
     })
 
 
+    cancelAnimationFrame(this.animationFrameID);
 
     this.animationFrameID = requestAnimationFrame(()=> this.animate() );
     // console.log("frame ID: ",this.animationFrameID);

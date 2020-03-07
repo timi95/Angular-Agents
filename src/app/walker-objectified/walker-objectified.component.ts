@@ -59,6 +59,7 @@ export class WalkerObjectifiedComponent implements OnInit, AfterViewInit {
     })
 
 
+    cancelAnimationFrame(this.animationFrameID);
 
     this.animationFrameID = requestAnimationFrame(()=> this.animate() );
     // console.log("frame ID: ",this.animationFrameID);
