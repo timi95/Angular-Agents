@@ -80,7 +80,9 @@ animate() {
 
     // move each of the squares
     this.squares.forEach( sq => {
-    //   sq.moveRandomly();
+      // sq.moveRandomly();
+    sq.generateTargetPoint();
+    sq.generatePath()
     sq.moveAlongPath();
     })
 

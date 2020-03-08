@@ -77,7 +77,12 @@ export class Square {
 
         difference.diffX = (targetPoint.targetX - this.x);
         difference.diffY = (targetPoint.targetY - this.y);
-
+        if (this.x > targetPoint.targetX ) {
+          difference.diffX = -1 * difference.diffX;
+        }
+        if ( this.y > targetPoint.targetY ) {
+          difference.diffY = -1 * difference.diffY;
+        }
         return difference;
     }
 
@@ -160,17 +165,21 @@ export class Square {
     moveAlongPath() {
         
         if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
+
             if ( this.x < this.target.targetX ) {
                 this.x += this.path.pathX[0];
+                // console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
+                
             } 
+
             // if ( this.x > this.target.targetX ) {
             //     this.x -= this.path.pathX[0];
             // } 
 
 
-            if ( this.y < this.target.targetY ) {
-                this.y += this.path.pathY[0];
-            } 
+            // if ( this.y < this.target.targetY ) {
+            //     this.y += this.path.pathY[0];
+            // } 
             // if ( this.y > this.target.targetY ) {
             //     this.y -= this.path.pathY[0];
             // } 
@@ -179,13 +188,18 @@ export class Square {
 
 
 
-        if ( this.x == this.target.targetX || this.y == this.target.targetY ) {
-            console.log("Retargeting, and recalculating path!");
+        // if ( this.x == this.target.targetX 
+        //   && this.y == this.target.targetY 
+        //   ) {
+        //     console.log("Retargeting, and recalculating path!");
+        //     console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
             
-            // this.target = this.generateTargetPoint();
-            // this.path = this.generatePath();
-            // this.moveAlongPath();
-        }
+        //     this.target = this.generateTargetPoint();
+        //     this.path = this.generatePath();
+
+        //     // this.draw();
+        //     // this.moveAlongPath();
+        // }
 
 
 
