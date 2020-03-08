@@ -176,21 +176,14 @@ export class Square {
             this.x += this.path.pathX[0];
             this.y += this.path.pathY[0];
 
-            // if ( this.x < this.target.targetX ) {
-            //     this.x += this.path.pathX[0];
-            // } 
-
-            // if ( this.x > this.target.targetX ) {
-            //     this.x -= this.path.pathX[0];
-            // } 
-
-
-            // if ( this.y < this.target.targetY ) {
-            //     this.y += this.path.pathY[0];
-            // } 
-            // if ( this.y > this.target.targetY ) {
-            //     this.y -= this.path.pathY[0];
-            // } 
+            if( Math.abs(this.x - this.target.targetX) < 3 
+                || Math.abs(this.y - this.target.targetY) < 3 ) {
+                  console.log("Retargeting, and recalculating path!");
+                  console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
+                  
+                  this.target = this.generateTargetPoint();
+                  this.path = this.generatePath();
+                }
 
         } 
 
