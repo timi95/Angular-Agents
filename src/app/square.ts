@@ -54,7 +54,7 @@ export class Square {
     
 
     generateTargetPoint():TargetPoint {
-        console.log("generate target ran !");
+        // console.log("generate target ran !");
         
         let target:TargetPoint = { targetX:0, targetY: 0}; 
         
@@ -75,13 +75,21 @@ export class Square {
         let difference:DifferencePoint = { diffX:0, diffY: 0}; 
 
 
-        difference.diffX = (targetPoint.targetX - this.x);
-        difference.diffY = (targetPoint.targetY - this.y);
+        // difference.diffX = (targetPoint.targetX - this.x);
+        // difference.diffY = (targetPoint.targetY - this.y);
         if (this.x > targetPoint.targetX ) {
-          difference.diffX = -1 * difference.diffX;
+
+          difference.diffX = -Math.abs(targetPoint.targetX - this.x);
+          console.log("negative diffX: ",difference.diffX);
+        } else {
+          difference.diffX = (targetPoint.targetX - this.x);
         }
+        
         if ( this.y > targetPoint.targetY ) {
-          difference.diffY = -1 * difference.diffY;
+          difference.diffY = -Math.abs(targetPoint.targetY - this.y);
+          console.log("negative diffY: ",difference.diffY);
+        } else {
+          difference.diffY = (targetPoint.targetY - this.y);
         }
         return difference;
     }
@@ -165,12 +173,12 @@ export class Square {
     moveAlongPath() {
         
         if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
+            this.x += this.path.pathX[0];
+            this.y += this.path.pathY[0];
 
-            if ( this.x < this.target.targetX ) {
-                this.x += this.path.pathX[0];
-                // console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
-                
-            } 
+            // if ( this.x < this.target.targetX ) {
+            //     this.x += this.path.pathX[0];
+            // } 
 
             // if ( this.x > this.target.targetX ) {
             //     this.x -= this.path.pathX[0];
@@ -188,37 +196,45 @@ export class Square {
 
 
 
-        // if ( this.x == this.target.targetX 
-        //   && this.y == this.target.targetY 
-        //   ) {
-        //     console.log("Retargeting, and recalculating path!");
-        //     console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
+        if ( this.x == this.target.targetX 
+          || this.y == this.target.targetY 
+          ) {
+            console.log("Retargeting, and recalculating path!");
+            console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
             
-        //     this.target = this.generateTargetPoint();
-        //     this.path = this.generatePath();
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
 
-        //     // this.draw();
-        //     // this.moveAlongPath();
-        // }
+            // this.draw();
+            // this.moveAlongPath();
+        }
 
 
 
 //   boundary checks
         if (this.x < 0) {
             this.x = 0;
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
         }
     
         if (this.y < 0) {
             this.y = 0;
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
         }
     
     
         if (this.x > this.width-this.square_width) {
             this.x = this.width-this.square_width;
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
         }
     
         if (this.y > this.height-this.square_height) {
             this.y = this.height-this.square_height;
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
         }
 
         this.draw();
