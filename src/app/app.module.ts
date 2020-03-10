@@ -10,7 +10,7 @@ import { LinearComponent } from './linear/linear.component';
 import { RandomWalkerComponent } from './random-walker/random-walker.component';
 import { WalkerObjectifiedComponent } from './walker-objectified/walker-objectified.component';
 import { BlueWalker } from './blue-walker.component';
-
+import { GreenWalker } from './green-walker.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { BlueWalker } from './blue-walker.component';
     LinearComponent,
     RandomWalkerComponent,
     WalkerObjectifiedComponent,
-    BlueWalker
+    BlueWalker,
+    GreenWalker
   ],
   imports: [ BrowserModule, FormsModule, AppRoutingModule ],
   providers: [],
