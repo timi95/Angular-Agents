@@ -240,8 +240,34 @@ export class Square {
       this.x = 0;
       this.y = 0;
     }
+
+
+
+    getX(){
+      return this.x;
+    }
+    getY() {
+      return this.y;
+    }
+
+    getZ() {
+      return this.z;
+    }
+
+
+    getSquareWidth() {
+      return this.square_width;
+    }
+
+    getSquareHeight() {
+      return this.square_height;
+    }
+
+    setColour( setColour) {
+      this.color = setColour ;
+    }
   
-  }
+}
 
 
 export interface TargetPoint {
