@@ -18,8 +18,7 @@ import { Square } from './square';
   styles: [`
                 canvas { 
                     border-style: solid;
-                    height: 500px;
-                    width: 500px;
+   
                 }
             `
     ]
@@ -81,9 +80,7 @@ animate() {
     // move each of the squares
     this.squares.forEach( sq => {
       // sq.moveRandomly();
-    sq.generateTargetPoint();
-    sq.generatePath()
-    sq.moveAlongPath();
+      sq.moveAlongPath();
     })
 
 

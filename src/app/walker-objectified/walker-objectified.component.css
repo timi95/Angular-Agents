@@ -1,10 +1,8 @@
 canvas { 
     border-style: solid;
-    height: 500px;
-    width: 500px;
 }
 
-.canvas-row {
+/* .canvas-row {
     display: flex;
     justify-content: space-evenly;
-}
+} */
