@@ -1,5 +1,6 @@
 canvas { 
     border-style: solid;
+    width: 100%;
 }
 
 /* .canvas-row {

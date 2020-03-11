@@ -29,6 +29,9 @@ export class Square {
 
         setInterval( ()=> this.minMaxSetup(), 1000);
 
+        this.x = Math.floor(Math.random() * this.width-this.square_width) + 1 ;
+        this.y = Math.floor(Math.random() * this.height-this.square_height) + 1 ;
+
         this.max = 1;
         this.min = -1;
 
@@ -72,7 +75,7 @@ export class Square {
     // this is incorrect
     startToEndDifference():DifferencePoint {
         let targetPoint:TargetPoint = this.target;
-        let difference:DifferencePoint = { diffX:0, diffY: 0}; 
+        let difference:DifferencePoint = { diffX:0, diffY: 0 }; 
 
 
         // difference.diffX = (targetPoint.targetX - this.x);
@@ -80,14 +83,14 @@ export class Square {
         if (this.x > targetPoint.targetX ) {
 
           difference.diffX = -Math.abs(targetPoint.targetX - this.x);
-          console.log("negative diffX: ",difference.diffX);
+          // console.log("negative diffX: ",difference.diffX);
         } else {
           difference.diffX = (targetPoint.targetX - this.x);
         }
         
         if ( this.y > targetPoint.targetY ) {
           difference.diffY = -Math.abs(targetPoint.targetY - this.y);
-          console.log("negative diffY: ",difference.diffY);
+          // console.log("negative diffY: ",difference.diffY);
         } else {
           difference.diffY = (targetPoint.targetY - this.y);
         }
@@ -178,8 +181,8 @@ export class Square {
 
             if( Math.abs(this.x - this.target.targetX) < 3 
                 || Math.abs(this.y - this.target.targetY) < 3 ) {
-                  console.log("Retargeting, and recalculating path!");
-                  console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
+                  // console.log("Retargeting, and recalculating path!");
+                  // console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
                   
                   this.target = this.generateTargetPoint();
                   this.path = this.generatePath();
@@ -192,8 +195,8 @@ export class Square {
         if ( this.x == this.target.targetX 
           || this.y == this.target.targetY 
           ) {
-            console.log("Retargeting, and recalculating path!");
-            console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
+            // console.log("Retargeting, and recalculating path!");
+            // console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
             
             this.target = this.generateTargetPoint();
             this.path = this.generatePath();

@@ -18,6 +18,7 @@ import { Square } from './square';
   styles: [`
                 canvas { 
                     border-style: solid;
+                    width: 100%;
                 }
             `
     ]
@@ -98,18 +99,25 @@ animate() {
         // if ( this.squares[i].getX)
 
         if (
-            this.squares[i].getX()  > this.squares[j].getX()
-            && this.squares[i].getX() <= this.squares[j].getX()+this.squares[j].getSquareWidth()
+              this.squares[i].getX()  > this.squares[j].getX()
+              && this.squares[i].getX() <= this.squares[j].getX()+this.squares[j].getSquareWidth()
 
-            &&
+              ||
 
-            this.squares[i].getY()  > this.squares[j].getY()
-            && this.squares[i].getY() <= this.squares[j].getY()+this.squares[j].getSquareHeight()
+              this.squares[i].getY()  > this.squares[j].getY()
+              && this.squares[i].getY() <= this.squares[j].getY()+this.squares[j].getSquareHeight()
            
             ) {
+              console.log("collisions detected !");
               // set the colour
               this.squares[i].setColour("red"); 
               this.squares[j].setColour("red"); 
+              
+              console.log('total squares: ',this.squares.length);
+              if (this.squares.length < 5) {
+                this.squares.push(new Square(this.ctx, this.width, this.height, 'red'));
+                
+              }
 
             } else {
               this.squares[i].setColour("green");
@@ -124,6 +132,12 @@ animate() {
 
 
 reset() {
+    this.squares = [];
+
+    for (let index = 0; index < 3; index++) {
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'green'));     
+    }
+
     this.squares.forEach( sq =>{
       sq.resetPositions();
       sq.setColour("green");

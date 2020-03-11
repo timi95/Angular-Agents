@@ -18,6 +18,7 @@ import { Square } from './square';
   styles: [`
                 canvas { 
                     border-style: solid;
+                    width: 100%;
                 }
             `
     ]
