@@ -1,7 +1,10 @@
 import { element } from 'protractor';
+// import { UUID } from 'angular2-uuid';
+import { v4 as uuid } from 'uuid';
 
 export class Square {
     private color = 'red';
+    private uuid: string;
     private x = 0;
     private y = 0;
     private z = 3;
@@ -26,7 +29,7 @@ export class Square {
     private width?:number, 
     private height?:number,
     private color_input?:string) {
-
+        this.uuid = uuid();
         setInterval( ()=> this.minMaxSetup(), 1000);
 
         this.x = Math.floor(Math.random() * this.width-this.square_width) + 1 ;
@@ -174,7 +177,7 @@ export class Square {
 
 
     moveAlongPath() {
-        
+        // follow path if the target is not reached
         if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
             this.x += this.path.pathX[0];
             this.y += this.path.pathY[0];
@@ -191,7 +194,7 @@ export class Square {
         } 
 
 
-
+        // change path if the target is reached
         if ( this.x == this.target.targetX 
           || this.y == this.target.targetY 
           ) {
@@ -245,6 +248,26 @@ export class Square {
     }
 
 
+    getSubjectLocation():SubjectLocation {
+
+      return {
+        id: this.uuid,
+        x: this.x,
+        y: this.y
+      };
+    }
+
+    subjectLocationNegatiation() {
+      //step 1: push this location into a BehaviorSubject
+
+      //step 2: subscribe to BehaviorSubject value stream
+
+      //step 3: consider SubjectLocation objects from stream that are not this objects particular SubjectLocation
+
+      //step 4: set the color of this object according to how close the other SubjectLocations are to this.SubjectLocation
+    }
+
+
 
     getX(){
       return this.x;
@@ -286,4 +309,11 @@ export interface DifferencePoint {
 export interface Path {
     pathX:number[];
     pathY:number[];
+}
+
+// for use when pushing various locations into a Behaviour subject
+export interface SubjectLocation {
+  id:string;
+  x:number;
+  y:number;
 }

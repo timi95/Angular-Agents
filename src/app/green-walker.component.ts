@@ -83,7 +83,7 @@ animate() {
       sq.moveAlongPath();
     });
 
-    this.collisionDetector();
+    // this.collisionDetector();
 
 
     cancelAnimationFrame(this.animationFrameID);
@@ -93,42 +93,42 @@ animate() {
     
 }
 
-  collisionDetector() {
-    for (let i=0; i< this.squares.length ; i++) {
-      for (let j=0; j< this.squares.length ; j++) {
-        // if ( this.squares[i].getX)
+  // collisionDetector() {
+  //   for (let i=0; i< this.squares.length ; i++) {
+  //     for (let j=0; j< this.squares.length ; j++) {
+  //       // if ( this.squares[i].getX)
 
-        if (
-              this.squares[i].getX()  > this.squares[j].getX()
-              && this.squares[i].getX() <= this.squares[j].getX()+this.squares[j].getSquareWidth()
+  //       if (
+  //             this.squares[i].getX()  > this.squares[j].getX()
+  //             && this.squares[i].getX() <= this.squares[j].getX()+this.squares[j].getSquareWidth()
 
-              ||
+  //             ||
 
-              this.squares[i].getY()  > this.squares[j].getY()
-              && this.squares[i].getY() <= this.squares[j].getY()+this.squares[j].getSquareHeight()
+  //             this.squares[i].getY()  > this.squares[j].getY()
+  //             && this.squares[i].getY() <= this.squares[j].getY()+this.squares[j].getSquareHeight()
            
-            ) {
-              console.log("collisions detected !");
-              // set the colour
-              this.squares[i].setColour("red"); 
-              this.squares[j].setColour("red"); 
+  //           ) {
+  //             console.log("collisions detected !");
+  //             // set the colour
+  //             this.squares[i].setColour("red"); 
+  //             this.squares[j].setColour("red"); 
               
-              console.log('total squares: ',this.squares.length);
-              if (this.squares.length < 5) {
-                this.squares.push(new Square(this.ctx, this.width, this.height, 'red'));
+  //             console.log('total squares: ',this.squares.length);
+  //             if (this.squares.length < 5) {
+  //               this.squares.push(new Square(this.ctx, this.width, this.height, 'red'));
                 
-              }
+  //             }
 
-            } else {
-              this.squares[i].setColour("green");
-              this.squares[j].setColour("green");
+  //           } else {
+  //             this.squares[i].setColour("green");
+  //             this.squares[j].setColour("green");
 
-            }
+  //           }
 
-      }
-    }
+  //     }
+  //   }
 
-  }
+  // }
 
 
 reset() {
