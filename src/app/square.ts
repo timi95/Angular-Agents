@@ -1,6 +1,7 @@
 import { element } from 'protractor';
 // import { UUID } from 'angular2-uuid';
 import { v4 as uuid } from 'uuid';
+import { SubjectLocationService } from './subject-location.service';
 
 export class Square {
     private color = 'red';
@@ -9,8 +10,8 @@ export class Square {
     private y = 0;
     private z = 3;
   
-    private square_width = 10;
-    private square_height = 10;
+    private square_width = 20;
+    private square_height = 20;
   
     private max;
     private min;
@@ -23,12 +24,14 @@ export class Square {
     private target;
     private difference: DifferencePoint;
 
+    ;
     
     constructor(
-    private ctx: CanvasRenderingContext2D, 
-    private width?:number, 
-    private height?:number,
-    private color_input?:string) {
+      private ctx: CanvasRenderingContext2D, 
+      private width?:number, 
+      private height?:number,
+      private color_input?:string,
+      private subjectLocationService?: SubjectLocationService) {
         this.uuid = uuid();
         setInterval( ()=> this.minMaxSetup(), 1000);
 
@@ -46,13 +49,13 @@ export class Square {
 
         //   this.target = { targetX:this.width/2, targetY:this.height/2};
         this.target = this.generateTargetPoint();
-        console.log("this is the target: ",this.target);
+        // console.log("this is the target: ",this.target);
         
 
 
 
         this.path = this.generatePath();
-          console.log("path initialised as: ", this.path);
+          // console.log("path initialised as: ", this.path);
         
         this.difference = this.startToEndDifference();
 
@@ -168,6 +171,7 @@ export class Square {
       this.draw();
     }
     
+
     draw() {
       this.ctx.fillStyle = this.color //`rgba(${this.x},${this.y},${this.z},1)`;
       this.ctx.fillRect(this.x, this.y, this.square_width, this.square_height);
@@ -179,8 +183,8 @@ export class Square {
     moveAlongPath() {
         // follow path if the target is not reached
         if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
-            this.x += this.path.pathX[0];
-            this.y += this.path.pathY[0];
+            this.x += this.path.pathX[0]/5;
+            this.y += this.path.pathY[0]/5;
 
             if( Math.abs(this.x - this.target.targetX) < 3 
                 || Math.abs(this.y - this.target.targetY) < 3 ) {
@@ -204,8 +208,6 @@ export class Square {
             this.target = this.generateTargetPoint();
             this.path = this.generatePath();
 
-            // this.draw();
-            // this.moveAlongPath();
         }
 
 
@@ -236,6 +238,11 @@ export class Square {
             this.path = this.generatePath();
         }
 
+        // this.drawWithCollision();
+
+        if ( this.subjectLocationService ) {
+          this.subjectLocationNegatiation();
+        }
         this.draw();
         // console.log('x: ',this.x, 'y: ',this.y);
     }
@@ -259,13 +266,34 @@ export class Square {
 
     subjectLocationNegatiation() {
       //step 1: push this location into a BehaviorSubject
+      this.subjectLocationService.publishLocation(this.getSubjectLocation());
+      
+      //step 2: subscribe to rxSubject value stream
+      this.subjectLocationService.getSubjectLocations().subscribe( subjectLocation => {
+        
+        //step 3: consider SubjectLocation objects from stream that are not this objects particular SubjectLocation
+        if ( subjectLocation.id != this.uuid ) {
+          //step 4: set the color of this object according to how close the other SubjectLocations are to this objects location
+          if ( this.inRange(subjectLocation.x, this.getSubjectLocation().x, this.getSubjectLocation().x+this.square_width) 
+            && this.inRange(subjectLocation.y, this.getSubjectLocation().y, this.getSubjectLocation().y+this.square_height) ) {
+              this.setColour("red");
+              
+            } else {
+              this.setColour(this.color_input);
+            }
 
-      //step 2: subscribe to BehaviorSubject value stream
+        }  });//subscription end
 
-      //step 3: consider SubjectLocation objects from stream that are not this objects particular SubjectLocation
-
-      //step 4: set the color of this object according to how close the other SubjectLocations are to this.SubjectLocation
     }
+
+
+  inRange(value: number, rangeStart: number, rangeEnd: number):boolean {
+    if ( Math.abs(value) >= rangeStart && Math.abs(value) <= rangeEnd )
+    { return true; }
+    else 
+    { return false; }
+
+  }
 
 
 

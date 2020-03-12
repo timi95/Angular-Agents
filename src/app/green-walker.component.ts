@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy, NgZone, HostBindin
 import { Turtle } from './turtle';
 import * as p5 from 'p5';
 import { Square } from './square';
+import { SubjectLocationService } from './subject-location.service';
 
 
 @Component({
@@ -48,7 +49,7 @@ export class GreenWalker implements OnInit,OnDestroy {
 
   // Animation sequence
   
-  constructor(private ngZone: NgZone) {
+  constructor(private ngZone: NgZone, private subjectLocationService: SubjectLocationService) {
   
 }
 
@@ -65,7 +66,7 @@ ngAfterViewInit(){
 
     // push squares into the squares array
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'green'));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'green', this.subjectLocationService));     
     }
 
 
@@ -135,7 +136,7 @@ reset() {
     this.squares = [];
 
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'green'));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'green', this.subjectLocationService));     
     }
 
     this.squares.forEach( sq =>{
