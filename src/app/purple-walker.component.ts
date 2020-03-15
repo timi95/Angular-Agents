@@ -24,7 +24,7 @@ import { SubjectLocationService } from './subject-location.service';
             `
     ]
 })
-export class GreenWalker implements OnInit,OnDestroy {
+export class PurpleWalker implements OnInit,OnDestroy {
     @ViewChild('canvas', { static: true }) 
     private canvas: ElementRef<HTMLCanvasElement>;
     private ctx: CanvasRenderingContext2D ;
@@ -66,7 +66,7 @@ ngAfterViewInit(){
 
     // push squares into the squares array
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'green', this.subjectLocationService));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
     }
 
 
@@ -84,15 +84,13 @@ animate() {
       sq.moveAlongPath();
     });
 
-    // this.collisionDetector();
-
-
     cancelAnimationFrame(this.animationFrameID);
 
     this.animationFrameID = requestAnimationFrame(()=> this.animate() );
     // console.log("frame ID: ",this.animationFrameID);
     
 }
+
 
 
 reset() {
