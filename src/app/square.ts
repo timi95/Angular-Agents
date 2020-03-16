@@ -24,7 +24,7 @@ export class Square {
     private target;
     private difference: DifferencePoint;
 
-    ;
+
     
     constructor(
       private ctx: CanvasRenderingContext2D, 
