@@ -6,7 +6,7 @@ import { SubjectLocationService } from './subject-location.service';
 
 
 @Component({
-  selector: 'green-walker',
+  selector: 'purple-walker',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ],
   template:`

@@ -170,6 +170,10 @@ export class Square {
   
       this.draw();
     }
+
+    randomNumber(minimum, maximum){
+      return Math.round( Math.random() * (maximum - minimum) + minimum);
+    }
     
 
     draw() {
@@ -184,11 +188,11 @@ export class Square {
         // follow path if the target is not reached
         if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
 
-            this.rotate((this.ctx.canvas.width/2), (this.ctx.canvas.height/2), this.x, this.y, 20);
-
-            this.x += this.path.pathX[0]/5;
-            this.y += this.path.pathY[0]/5;
-
+          
+          this.x += this.path.pathX[0]/5;
+          this.y += this.path.pathY[0]/5;
+          
+          // this.rotate((this.ctx.canvas.width/2), (this.ctx.canvas.height/2), this.getSubjectLocation().x, this.getSubjectLocation().y, this.randomNumber(-20,20));
             if( Math.abs(this.x - this.target.targetX) < 3 
                 || Math.abs(this.y - this.target.targetY) < 3 ) {
                   // console.log("Retargeting, and recalculating path!");
@@ -338,6 +342,7 @@ export class Square {
        // > [1, 0]
        */
 
+      
 
       let radians = (Math.PI / 180) * rotationAngleInDegrees;
       let cos = Math.cos(radians);
