@@ -321,7 +321,7 @@ export class Square {
       this.color = setColour ;
     }
   
-    rotate(axisX, axisY, x, y, rotationInDegrees ) {
+    rotate(axisX:number, axisY:number, x:number, y:number, rotationAngleInDegrees:number ) {
       /**
        * The first two parameters are the X and Y coordinates of the central point 
        * (the origin around which the second point will be rotated). 
@@ -334,6 +334,14 @@ export class Square {
        //rotate(1, 1, 2, 1, 90);
        // > [1, 0]
        */
+
+
+      let radians = (Math.PI / 180) * rotationAngleInDegrees;
+      let cos = Math.cos(radians);
+      let sin = Math.sin(radians);
+      let nx = (cos * (x - axisX)) + (sin * (y - axisY)) + axisX;
+      let ny = (cos * (y - axisY)) - (sin * (x - axisX)) + axisY;
+      return [nx, ny];
     }
 
 }
