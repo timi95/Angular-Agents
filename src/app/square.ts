@@ -287,13 +287,13 @@ export class Square {
     }
 
 
-  inRange(value: number, rangeStart: number, rangeEnd: number):boolean {
-    if ( Math.abs(value) >= rangeStart && Math.abs(value) <= rangeEnd )
-    { return true; }
-    else 
-    { return false; }
+    inRange(value: number, rangeStart: number, rangeEnd: number):boolean {
+      if ( Math.abs(value) >= rangeStart && Math.abs(value) <= rangeEnd )
+      { return true; }
+      else 
+      { return false; }
 
-  }
+    }
 
 
 
@@ -321,6 +321,21 @@ export class Square {
       this.color = setColour ;
     }
   
+    rotate(axisX, axisY, x, y, rotationInDegrees ) {
+      /**
+       * The first two parameters are the X and Y coordinates of the central point 
+       * (the origin around which the second point will be rotated). 
+       * The next two parameters are the coordinates of the point that we'll be rotating. 
+       * The last parameter is the angle, in degrees.
+       * 
+       * As an example, we'll take the point (2, 1) and rotate it around the point (1, 1) 
+       * by 90 degrees clockwise.
+       * 
+       //rotate(1, 1, 2, 1, 90);
+       // > [1, 0]
+       */
+    }
+
 }
 
 
