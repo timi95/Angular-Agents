@@ -183,6 +183,9 @@ export class Square {
     moveAlongPath() {
         // follow path if the target is not reached
         if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
+
+            this.rotate((this.ctx.canvas.width/2), (this.ctx.canvas.height/2), this.x, this.y, 20);
+
             this.x += this.path.pathX[0]/5;
             this.y += this.path.pathY[0]/5;
 
@@ -341,7 +344,10 @@ export class Square {
       let sin = Math.sin(radians);
       let nx = (cos * (x - axisX)) + (sin * (y - axisY)) + axisX;
       let ny = (cos * (y - axisY)) - (sin * (x - axisX)) + axisY;
-      return [nx, ny];
+      // return {x:nx, y:ny};
+
+      this.x = nx;
+      this.y = ny;
     }
 
 }
