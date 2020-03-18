@@ -11,7 +11,7 @@ import { RandomWalkerComponent } from './random-walker/random-walker.component';
 import { WalkerObjectifiedComponent } from './walker-objectified/walker-objectified.component';
 import { BlueWalker } from './blue-walker.component';
 import { GreenWalker } from './green-walker.component';
-import { PurpleWalkerComponent } from './purple-walker/purple-walker.component';
+import { PurpleWalker } from './purple-walker.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { PurpleWalkerComponent } from './purple-walker/purple-walker.component';
     WalkerObjectifiedComponent,
     BlueWalker,
     GreenWalker,
-    PurpleWalkerComponent
+    PurpleWalker
   ],
   imports: [ BrowserModule, FormsModule, AppRoutingModule ],
   providers: [],
