@@ -175,32 +175,32 @@ export class Square {
       return Math.round( Math.random() * (maximum - minimum) + minimum);
     }
     
-
+    
     draw() {
       this.ctx.fillStyle = this.color //`rgba(${this.x},${this.y},${this.z},1)`;
       this.ctx.fillRect(this.x, this.y, this.square_width, this.square_height);
-    //   console.log('x: ',this.x, 'y: ',this.y);
+      //   console.log('x: ',this.x, 'y: ',this.y);
       
     }
-
-
+    
+    
     moveAlongPath() {
-        // follow path if the target is not reached
-        if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
-
-          
+      // follow path if the target is not reached
+      if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
+        
+        
           this.x += this.path.pathX[0]/5;
           this.y += this.path.pathY[0]/5;
           
-          // this.rotate((this.ctx.canvas.width/2), (this.ctx.canvas.height/2), this.getSubjectLocation().x, this.getSubjectLocation().y, this.randomNumber(-20,20));
-            if( Math.abs(this.x - this.target.targetX) < 3 
-                || Math.abs(this.y - this.target.targetY) < 3 ) {
-                  // console.log("Retargeting, and recalculating path!");
-                  // console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
-                  
-                  this.target = this.generateTargetPoint();
-                  this.path = this.generatePath();
-                }
+          if( Math.abs(this.x - this.target.targetX) < 3 
+          || Math.abs(this.y - this.target.targetY) < 3 ) {
+            // console.log("Retargeting, and recalculating path!");
+            // console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
+            
+            
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
+          }
 
         } 
 
@@ -211,6 +211,7 @@ export class Square {
           ) {
             // console.log("Retargeting, and recalculating path!");
             // console.log(`x: ${this.x} , targetX:${this.target.targetX}`);
+            
             
             this.target = this.generateTargetPoint();
             this.path = this.generatePath();
@@ -253,6 +254,73 @@ export class Square {
         this.draw();
         // console.log('x: ',this.x, 'y: ',this.y);
     }
+
+    
+    testingSwervingMotions() {
+      // follow path if the target is not reached
+      if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
+        
+        
+          this.x += this.path.pathX[0]/5;
+          this.y += this.path.pathY[0]/5;
+          
+          if( Math.abs(this.x - this.target.targetX) < 3 
+          || Math.abs(this.y - this.target.targetY) < 3 ) {
+          
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
+          }
+
+        } 
+
+
+        // change path if the target is reached
+        if ( this.x == this.target.targetX 
+          || this.y == this.target.targetY 
+          ) {
+
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
+
+        }
+
+
+
+//   boundary checks
+        if (this.x < 0) {
+            this.x = 0;
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
+        }
+    
+        if (this.y < 0) {
+            this.y = 0;
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
+        }
+    
+    
+        if (this.x > this.width-this.square_width) {
+            this.x = this.width-this.square_width;
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
+        }
+    
+        if (this.y > this.height-this.square_height) {
+            this.y = this.height-this.square_height;
+            this.target = this.generateTargetPoint();
+            this.path = this.generatePath();
+        }
+
+        if ( this.subjectLocationService ) {
+          this.subjectLocationNegatiation();
+        }
+        this.draw();
+        this.rotate((this.ctx.canvas.width/2), (this.ctx.canvas.height/2), this.x, this.y, 1);
+
+        // console.log('x: ',this.x, 'y: ',this.y);
+    }
+
 
 
   

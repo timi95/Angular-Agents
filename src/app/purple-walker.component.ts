@@ -80,7 +80,7 @@ animate() {
     // move each of the squares
     this.squares.forEach( sq => {
       // sq.moveRandomly();
-      sq.moveAlongPath();
+      sq.testingSwervingMotions();
     });
 
     cancelAnimationFrame(this.animationFrameID);
@@ -96,7 +96,7 @@ reset() {
     this.squares = [];
 
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'green', this.subjectLocationService));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
     }
 
     this.squares.forEach( sq =>{
