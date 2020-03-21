@@ -90,8 +90,7 @@ animate() {
     
 }
 
-
-
+ 
 reset() {
     this.squares = [];
 
