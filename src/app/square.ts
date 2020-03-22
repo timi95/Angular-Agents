@@ -260,18 +260,19 @@ export class Square {
       // follow path if the target is not reached
       if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
         
-        // Much better swerving when swerving towards the target point !
-          this.rotate(this.target.targetX, this.target.targetY, this.x, this.y, 1);
         
-          this.x += this.path.pathX[0]/5;
-          this.y += this.path.pathY[0]/5;
+        this.x += this.path.pathX[0]/5;
+        this.y += this.path.pathY[0]/5;
+        
+        if( Math.abs(this.x - this.target.targetX) < 3 
+        || Math.abs(this.y - this.target.targetY) < 3 ) {
           
-          if( Math.abs(this.x - this.target.targetX) < 3 
-          || Math.abs(this.y - this.target.targetY) < 3 ) {
-          
-            this.target = this.generateTargetPoint();
-            this.path = this.generatePath();
-          }
+          this.target = this.generateTargetPoint();
+          this.path = this.generatePath();
+        }
+        
+        // Much better swerving when swerving towards the target point !
+        this.rotate(this.target.targetX, this.target.targetY, this.x, this.y, 1.5);
 
         } 
 
