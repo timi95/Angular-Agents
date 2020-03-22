@@ -260,6 +260,8 @@ export class Square {
       // follow path if the target is not reached
       if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
         
+        // Much better swerving when swerving towards the target point !
+          this.rotate(this.target.targetX, this.target.targetY, this.x, this.y, 1);
         
           this.x += this.path.pathX[0]/5;
           this.y += this.path.pathY[0]/5;
@@ -316,7 +318,8 @@ export class Square {
           this.subjectLocationNegatiation();
         }
         this.draw();
-        this.rotate((this.ctx.canvas.width/2), (this.ctx.canvas.height/2), this.x, this.y, 1);
+        // this.rotate((this.ctx.canvas.width/2), (this.ctx.canvas.height/2), this.x, this.y, 1);
+
 
         // console.log('x: ',this.x, 'y: ',this.y);
     }
