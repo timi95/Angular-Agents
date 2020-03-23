@@ -277,7 +277,7 @@ export class Square {
         } 
 
 
-        // change path if the target is reached
+        // change path if the target is reached //
         if ( this.x == this.target.targetX 
           || this.y == this.target.targetY 
           ) {
