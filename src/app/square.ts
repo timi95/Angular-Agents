@@ -23,7 +23,7 @@ export class Square {
     private path;
     private target;
     private difference: DifferencePoint;
-    private rotationDegree = 1;
+    private rotationDegree = this.setRotationDegree();
 
 
 
@@ -36,6 +36,7 @@ export class Square {
       private subjectLocationService?: SubjectLocationService) {
         this.uuid = uuid();
         setInterval( ()=> this.minMaxSetup(), 1000);
+        setInterval( ()=> this.setRotationDegree(),6000);
 
         this.x = Math.floor(Math.random() * this.width-this.square_width) + 1 ;
         this.y = Math.floor(Math.random() * this.height-this.square_height) + 1 ;
@@ -431,14 +432,7 @@ export class Square {
     }
 
     setRotationDegree() {
-      if(this.rotationDegree == 1) {
-        this.rotationDegree = -1;
-      }
-      if(this.rotationDegree == -1) {
-        this.rotationDegree = 1;
-      }
-      console.log("state of rotationDegree",this.rotationDegree);
-      
+      return Math.floor(Math.random()*2) == 1 ? 1 : -1;   
     }
 
 }
