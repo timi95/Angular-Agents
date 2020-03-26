@@ -23,6 +23,8 @@ export class Square {
     private path;
     private target;
     private difference: DifferencePoint;
+    // private rotationDegree = 1;
+
 
 
     
@@ -257,6 +259,7 @@ export class Square {
 
     
     testingSwervingMotions() {
+      let rotationDegree = -1;
       // follow path if the target is not reached
       if ( this.x != this.target.targetX || this.y != this.target.targetY ) {
         
@@ -272,7 +275,7 @@ export class Square {
         }
         
         // Much better swerving when swerving towards the target point !
-        this.rotate(this.target.targetX, this.target.targetY, this.x, this.y, 1.5);
+        this.rotate(this.target.targetX, this.target.targetY, this.x, this.y,  rotationDegree);
 
         } 
 
