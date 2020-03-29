@@ -89,7 +89,7 @@ animate() {
     // console.log("frame ID: ",this.animationFrameID);
     
 }
-//
+//..
  
 reset() {
     this.squares = [];
@@ -98,7 +98,7 @@ reset() {
       this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
     }
 
-    this.squares.forEach( sq =>{
+    this.squares.forEach( sq => {
       sq.resetPositions();
       sq.setColour("green");
     });
