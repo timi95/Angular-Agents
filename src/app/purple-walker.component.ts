@@ -89,7 +89,7 @@ animate() {
     // console.log("frame ID: ",this.animationFrameID);
     
 }
-//..
+//...
  
 reset() {
     this.squares = [];
