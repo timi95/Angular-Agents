@@ -28,6 +28,10 @@ export class AppComponent implements OnInit,OnDestroy {
   }
 
 
+  changeWalkerDisplayType(e) {
+    this.WalkerDisplayType = e.target.value;
+  }
+
   // Animation sequence
   
   constructor() {
