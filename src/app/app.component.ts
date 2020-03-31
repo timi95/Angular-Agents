@@ -29,7 +29,14 @@ export class AppComponent implements OnInit,OnDestroy {
 
 
   changeWalkerDisplayType(e) {
+    console.log("type of event",e.type);
+    
+    console.log("Type change fired!");
+    
     this.WalkerDisplayType = e.target.value;
+    console.log("changed type to: ",this.WalkerDisplayType);
+    
+    
   }
 
   // Animation sequence

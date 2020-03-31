@@ -49,7 +49,7 @@
     <purple-walker></purple-walker>
 </div> -->
 
-<select class="custom-select" (change)="changeWalkerDisplayType($event)" formControlName="walkerType">
+<select class="custom-select" (change)="changeWalkerDisplayType($event)" >
     <option value="" disabled>Choose WalkerDisplayType </option>
     <option *ngFor="let type of walkerTypeList" [ngValue]="type">{{type}}</option>
  </select>
