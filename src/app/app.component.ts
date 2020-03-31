@@ -11,6 +11,13 @@ import * as p5 from 'p5';
 export class AppComponent implements OnInit,OnDestroy {
 
   private p5;
+  private WalkerDisplayType="";
+  private walkerTypeList = [
+    'redWalker',
+    'blueWalker',
+    'greenWalker',
+    'purpleWalker'
+  ] ;
 
 
   ngOnDestroy(): void {

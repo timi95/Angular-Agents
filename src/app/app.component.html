@@ -40,13 +40,37 @@
 <!-- <app-circles></app-circles>
 <app-linear></app-linear>
 <app-random-walker></app-random-walker> -->
-<div class="walker-row">
+<!-- <div class="walker-row">
     <app-walker-objectified></app-walker-objectified>
     <blue-walker></blue-walker>
     <green-walker></green-walker>
 </div>
 <div class="walker-row">
     <purple-walker></purple-walker>
+</div> -->
+
+<select class="custom-select" (change)="changeWalkerDisplayType($event)" formControlName="walkerType">
+    <option value="" disabled>Choose WalkerDisplayType </option>
+    <option *ngFor="let type of walkerTypeList" [ngValue]="WalkerDisplayType">{{WalkerDisplayType}}</option>
+ </select>
+
+<div [ngSwitch]="WalkerDisplayType">
+    <div *ngSwitchCase="'redWalker'">
+        <app-walker-objectified></app-walker-objectified>
+    </div>
+    <div *ngSwitchCase="'blueWalker'">
+        <blue-walker></blue-walker>
+    </div>
+    <div *ngSwitchCase="'greenWalker'">
+        <green-walker></green-walker>
+    </div>
+    <div *ngSwitchCase="'purpleWalker'">
+        <purple-walker></purple-walker>
+    </div>
+    <div *ngSwitchDefault>
+        <app-walker-objectified></app-walker-objectified>
+    </div>
 </div>
+
 
 <!-- <router-outlet></router-outlet> -->
