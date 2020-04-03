@@ -74,6 +74,7 @@ ngAfterViewInit(){
 
       console.log("nullfying !");
       // scope issues on this.
+      
       this.squares.forEach( sq => {
         sq = null;
       });
