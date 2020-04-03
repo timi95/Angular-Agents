@@ -68,10 +68,24 @@ ngAfterViewInit(){
       this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
     }
 
+ 
+    // set lifespan
+    setTimeout( function() {
 
+      console.log("nullfying !");
+      // scope issues on this.
+      this.squares.forEach( sq => {
+        sq = null;
+      });
+    }
+    , 10000);
 
-    this.ngZone.runOutsideAngular(() => this.animate());
+    this.ngZone.runOutsideAngular(() => { this.animate();}  );
 }
+  setNull():void {
+
+  }
+
  
 animate() {  
     // clear the screen before any drawing is done
@@ -89,7 +103,7 @@ animate() {
     // console.log("frame ID: ",this.animationFrameID);
     
 }
-//...
+
  
 reset() {
     this.squares = [];

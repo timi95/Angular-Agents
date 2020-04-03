@@ -36,7 +36,7 @@ export class Square {
       private subjectLocationService?: SubjectLocationService) {
         this.uuid = uuid();
         setInterval( ()=> this.minMaxSetup(), 1000);
-        setInterval( ()=> this.setRotationDegree(),6000);
+        setInterval( ()=> this.setRotationDegree(), 6000);
 
         this.x = Math.floor(Math.random() * this.width-this.square_width) + 1 ;
         this.y = Math.floor(Math.random() * this.height-this.square_height) + 1 ;
