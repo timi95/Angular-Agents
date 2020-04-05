@@ -75,9 +75,10 @@ ngAfterViewInit(){
       console.log("nullfying !");
       // scope issues on this.
       
-      this.squares.forEach( sq => {
-        sq = null;
-      });
+      for (let index = 0; index < 3; index++) {
+        // this.squares[index] = null;
+        console.log(this.squares);
+      }
     }
     , 10000);
 
