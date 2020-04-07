@@ -76,7 +76,7 @@ ngAfterViewInit(){
       // scope issues on this.
       
       for (let index = 0; index < 3; index++) {
-        delete this.squares[index];
+        // delete this.squares[index];
         console.log(this.squares);
       }
     }
