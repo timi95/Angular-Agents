@@ -292,8 +292,8 @@ export class Square {
         }
 
 
-
-//   boundary checks
+//..
+        // boundary checks
         if (this.x < 0) {
             this.x = 0;
             this.target = this.generateTargetPoint();

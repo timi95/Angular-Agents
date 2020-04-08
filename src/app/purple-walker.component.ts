@@ -84,9 +84,11 @@ ngAfterViewInit(){
 
     this.ngZone.runOutsideAngular(() => { this.animate();}  );
 }
-  setNull():void {
 
-  }
+
+setNull():void {
+
+}
 
  
 animate() {  
