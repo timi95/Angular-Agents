@@ -4,7 +4,7 @@
     The canvas is not working !
 </canvas> -->
 
-<nav>
+<nav class="head-nav">
     <ul style="list-style-type: none;">
         <a href="https://timi95.github.io">
             <li class="nav-text"><strong> Home </strong></li>
@@ -12,7 +12,7 @@
         <a href="https://drive.google.com/file/d/1tvvD0RxJrs5yYr-Q89NVLNpw9Qc24ZcX/view?usp=sharing">
             <li class="nav-text"><strong> Resume </strong></li>
         </a>
-        <li class="nav-text"> <strong> <a style=" margin: 0px; padding: 0px;">Contact</a> | <b>timi.ogunkeye@gmail.com</b> </strong> </li>
+        <li class="nav-text"> <strong> <a style=" margin: 0px; padding: 0px;">Contact</a> | <b style="word-break:break-all;">timi.ogunkeye@gmail.com</b> </strong> </li>
 
         <a href="mailto:timi.ogunkeye@gmail.com">
            <b> <i class="fas fa-envelope fa-2x">Email,</i> </b>
@@ -22,9 +22,9 @@
         </a>
     </ul>
 </nav>
-<h1>Hi there, consider this a loading page until I come up with a new portfolio style page !</h1>
-<h3> Thanks for coming to check me out anyway !</h3>
-<p> Some info whilst you are here: <br> <br>
+<h1 style="text-align: center;">Hi there, and welcome to my page</h1>
+<h3 style="text-align: center;"> Scroll down and click reset on some of JS canvas tinkerings</h3>
+<p class="center-larger"> Some info whilst you are here: <br> <br>
 
     Commercially, I've worked as a frontend dev with angular, and backend with Java spring-boot, altogether I've been working for just over 3 years (Time flies, and bees, butterflys....) <br> <br>
 
@@ -49,12 +49,14 @@
     <purple-walker></purple-walker>
 </div> -->
 
-<select class="custom-select" (change)="changeWalkerDisplayType($event)" >
-    <option value="" disabled>Choose WalkerDisplayType </option>
-    <option *ngFor="let type of walkerTypeList" [ngValue]="type">{{type}}</option>
- </select>
-
-<div [ngSwitch]="WalkerDisplayType">
+<div class="walker-display-frame">
+    <select class="custom-select" (change)="changeWalkerDisplayType($event)" >
+        <option value="" disabled>Choose WalkerDisplayType </option>
+        <option *ngFor="let type of walkerTypeList" [ngValue]="type">{{type}}</option>
+     </select>
+</div>
+<br>
+<div class="walker-display-frame" [ngSwitch]="WalkerDisplayType">
     <div *ngSwitchCase="'redWalker'">
         <app-walker-objectified></app-walker-objectified>
     </div>

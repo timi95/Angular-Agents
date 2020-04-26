@@ -11,8 +11,8 @@ import * as p5 from 'p5';
 export class AppComponent implements OnInit,OnDestroy {
 
   private p5;
-  private WalkerDisplayType="";
-  private walkerTypeList = [
+  public WalkerDisplayType="";
+  public walkerTypeList = [
     'redWalker',
     'blueWalker',
     'greenWalker',

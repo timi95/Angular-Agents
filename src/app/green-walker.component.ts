@@ -11,6 +11,7 @@ import { SubjectLocationService } from './subject-location.service';
   template:`
     <div>
         <canvas #canvas ></canvas>
+        <br>
         <button (click)="reset()">Reset</button> 
         <button (click)="stopAnimation()">Stop</button>
     </div>
@@ -18,7 +19,7 @@ import { SubjectLocationService } from './subject-location.service';
   styles: [`
                 canvas { 
                     border-style: solid;
-                    width: 100%;
+                    width: 80%;
                 }
             `
     ]

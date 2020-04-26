@@ -10,6 +10,7 @@ import { Square } from './square';
   template:`
     <div>
         <canvas #canvas ></canvas>
+        <br>
         <button (click)="reset()">Reset</button> 
         <button (click)="stopAnimation()">Stop</button>
     </div>
@@ -17,7 +18,7 @@ import { Square } from './square';
   styles: [`
                 canvas { 
                     border-style: solid;
-                    width: 100%;
+                    width: 80%;
                 }
             `
     ]
