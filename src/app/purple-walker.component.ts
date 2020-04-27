@@ -30,7 +30,7 @@ export class PurpleWalker implements OnInit,OnDestroy {
     private ctx: CanvasRenderingContext2D ;
     private animationFrameID:number;
 
-    private count = 0;
+    private count;
     private x; private y; 
     // setting a width and height for the canvas
     @Input() public width; 
@@ -49,9 +49,11 @@ export class PurpleWalker implements OnInit,OnDestroy {
 
   // Animation sequence
   
-  constructor(private ngZone: NgZone, private subjectLocationService: SubjectLocationService) {
-  
-}
+  constructor(
+  private ngZone: NgZone, 
+  private subjectLocationService: SubjectLocationService) {
+      
+  }
 
 
 ngAfterViewInit(){
@@ -69,44 +71,41 @@ ngAfterViewInit(){
       this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
     }
 
- 
-    // set lifespan
-    setTimeout( function() {
-
-      console.log("nullfying !");
-      // scope issues on this.
-      
-      for (let index = 0; index < 3; index++) {
-        // delete this.squares[index];
-        console.log(this.squares);
-      }
-    }
-    , 10000);
-
     this.ngZone.runOutsideAngular(() => { this.animate();}  );
-}
-
-
-setNull():void {
-
-}
-
- 
-animate() {  
+  }
+  
+  
+  setNull():void {
+    
+  }
+  
+  
+  animate() {  
     // clear the screen before any drawing is done
     this.ctx.clearRect(0,0, this.width,this.height);
-
+    
     // move each of the squares
     this.squares.forEach( sq => {
       // sq.moveRandomly();
       sq.testingSwervingMotions();
     });
+    
 
     cancelAnimationFrame(this.animationFrameID);
 
     this.animationFrameID = requestAnimationFrame(()=> this.animate() );
     // console.log("frame ID: ",this.animationFrameID);
     
+    if(this.squares && this.squares.length) {//if the array is not empty
+      for (let index = 0; index < this.squares.length; index++) {
+        // delete this.squares[index];
+        if(this.squares[index].lifeSpan < 1) { //check if the lifeSpan is 0
+          console.log("deletion commensed");
+          
+          this.squares.splice(index,1); //delete
+        }
+      }
+    }
 }
 
  

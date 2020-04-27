@@ -25,6 +25,8 @@ export class Square {
     private difference: DifferencePoint;
     private rotationDegree = this.setRotationDegree();
 
+    public lifeSpan:number;
+
 
 
     
@@ -37,7 +39,10 @@ export class Square {
         this.uuid = uuid();
         setInterval( ()=> this.minMaxSetup(), 1000);
         setInterval( ()=> this.setRotationDegree(), 6000);
-
+        
+        this.lifeSpan = Math.floor(Math.random() * 10) + 1 ;
+        setInterval( ()=> this.decrementLifeSpan(), 1000);
+        
         this.x = Math.floor(Math.random() * this.width-this.square_width) + 1 ;
         this.y = Math.floor(Math.random() * this.height-this.square_height) + 1 ;
 
@@ -64,6 +69,16 @@ export class Square {
 
     }
     
+    decrementLifeSpan() {
+      if(this.lifeSpan != 0){
+        console.log(`current lifeSpan: ${this.lifeSpan}`);
+        this.lifeSpan -= 1;
+      }
+    }
+
+    public getLifeSpan():number {
+      return this.lifeSpan;
+    }
 
     generateTargetPoint():TargetPoint {
         // console.log("generate target ran !");
