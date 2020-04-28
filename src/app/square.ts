@@ -41,6 +41,7 @@ export class Square {
         setInterval( ()=> this.setRotationDegree(), 6000);
         
         this.lifeSpan = Math.floor(Math.random() * 10) + 1 ;
+        if(this.color_input == "purple")
         setInterval( ()=> this.decrementLifeSpan(), 1000);
         
         this.x = Math.floor(Math.random() * this.width-this.square_width) + 1 ;
