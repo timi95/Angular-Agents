@@ -58,18 +58,37 @@
 <br>
 <div class="walker-display-frame" [ngSwitch]="WalkerDisplayType">
     <div *ngSwitchCase="'redWalker'">
+        <p> 
+            The <span style="color: red;"> Red </span> walkers move based on a timer, and all synchronised.
+        </p>
         <app-walker-objectified></app-walker-objectified>
     </div>
     <div *ngSwitchCase="'blueWalker'">
+        <p>
+            The <span style="color: blue;"> Blue </span> walkers move to words a target, and change direction/targets once their initial target is reached.
+        </p>
         <blue-walker></blue-walker>
     </div>
     <div *ngSwitchCase="'greenWalker'">
+        <p>
+            The <span style="color: green;"> Green </span> walkers implement a "collision". 
+            <br> 
+            They change colour when they overlap...I realise it's a bit buggy, that's because I'm doing the check with RxJS.
+            <br>So, probably I've overlooked some asynchronous side-effects.
+        </p>
         <green-walker></green-walker>
     </div>
     <div *ngSwitchCase="'purpleWalker'">
+        <p>
+            The <span style="color: purple;"> Purple </span> walkers, rotate around their target which gives a curving effect.
+            <br> Each walker instance also has a life-span, and lives a maximum of ten seconds in the canvas.
+        </p>
         <purple-walker></purple-walker>
     </div>
     <div *ngSwitchDefault>
+        <p> 
+            The <span style="color: red;"> Red </span> walkers move based on a timer, and all synchronised.
+        </p>
         <app-walker-objectified></app-walker-objectified>
     </div>
 </div>

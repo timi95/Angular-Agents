@@ -7,7 +7,7 @@ import { SubjectLocationService } from 'src/app/subject-location.service';
 
 @Component({
   selector: 'green-walker',
-  styleUrls: [ './app.component.css' ],
+  styleUrls: [ '../../app.component.css' ],
   template:`
     <div>
         <canvas #canvas ></canvas>

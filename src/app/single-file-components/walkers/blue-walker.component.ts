@@ -6,7 +6,7 @@ import { Square } from '../../square';
 
 @Component({
   selector: 'blue-walker',
-  styleUrls: [ './app.component.css' ],
+  styleUrls: [ '../../app.component.css' ],
   template:`
     <div>
         <canvas #canvas ></canvas>
