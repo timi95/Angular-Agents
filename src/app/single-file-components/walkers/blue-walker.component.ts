@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, NgZone, HostBinding, HostListener, Input } from '@angular/core';
-import { Turtle } from './turtle';
+import { Turtle } from '../../turtle';
 import * as p5 from 'p5';
-import { Square } from './square';
+import { Square } from '../../square';
 
 
 @Component({
