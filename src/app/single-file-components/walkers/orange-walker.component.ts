@@ -6,7 +6,7 @@ import { SubjectLocationService } from '../../subject-location.service';
 
 
 @Component({
-  selector: 'purple-walker',
+  selector: 'orange-walker',
   styleUrls: [ '../../app.component.css' ],
   template:`
     <div>
@@ -24,7 +24,7 @@ import { SubjectLocationService } from '../../subject-location.service';
             `
     ]
 })
-export class PurpleWalker implements OnInit,OnDestroy {
+export class OrangeWalker implements OnInit,OnDestroy {
     @ViewChild('canvas', { static: true }) 
     private canvas: ElementRef<HTMLCanvasElement>;
     private ctx: CanvasRenderingContext2D ;
@@ -68,7 +68,7 @@ ngAfterViewInit(){
 
     // push squares into the squares array
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'orange', this.subjectLocationService));     
     }
 
     this.ngZone.runOutsideAngular(() => { this.animate();}  );
@@ -106,6 +106,15 @@ ngAfterViewInit(){
         }
       }
     }
+
+    for (let square of this.squares) {
+        if (square.pregancyPeriod >= 10) {
+            // add new square
+            this.squares.push(new Square(this.ctx, this.width, this.height, 'orange', this.subjectLocationService));     
+            // set pregnancy counter back to zero
+            square.setPregnancyToNill();
+        }
+    }
 }
 
  
@@ -113,12 +122,12 @@ reset() {
     this.squares = [];
 
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'orange', this.subjectLocationService));     
     }
 
     this.squares.forEach( sq => {
       sq.resetPositions();
-      sq.setColour("purple");
+      sq.setColour("orange");
     });
     this.ngZone.runOutsideAngular(() => this.animate());
     // this.animationFrameID = requestAnimationFrame(()=> this.animate() );

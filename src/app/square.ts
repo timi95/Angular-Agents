@@ -26,6 +26,7 @@ export class Square {
     private rotationDegree = this.setRotationDegree();
 
     public lifeSpan:number;
+    public pregancyPeriod:number;
 
 
 
@@ -40,8 +41,10 @@ export class Square {
         setInterval( ()=> this.minMaxSetup(), 1000);
         setInterval( ()=> this.setRotationDegree(), 6000);
         
+        this.pregancyPeriod = 0;
+
         this.lifeSpan = Math.floor(Math.random() * 10) + 1 ;
-        if(this.color_input == "purple")
+        if(this.color_input == "purple" || this.color_input == 'orange')
         setInterval( ()=> this.decrementLifeSpan(), 1000);
         
         this.x = Math.floor(Math.random() * this.width-this.square_width) + 1 ;
@@ -198,6 +201,8 @@ export class Square {
     draw() {
       this.ctx.fillStyle = this.color //`rgba(${this.x},${this.y},${this.z},1)`;
       this.ctx.fillRect(this.x, this.y, this.square_width, this.square_height);
+      if (this.color_input == 'orange')
+      this.ctx.strokeRect(this.x, this.y, this.square_width, this.square_height)
       //   console.log('x: ',this.x, 'y: ',this.y);
       
     }
@@ -376,6 +381,9 @@ export class Square {
           if ( this.inRange(subjectLocation.x, this.getSubjectLocation().x, this.getSubjectLocation().x+this.square_width) 
             && this.inRange(subjectLocation.y, this.getSubjectLocation().y, this.getSubjectLocation().y+this.square_height) ) {
               this.setColour("red");
+
+              // count up to birth
+              setInterval( ()=> this.incrementPregnancy(), 1000);
               
             } else {
               this.setColour(this.color_input);
@@ -385,6 +393,14 @@ export class Square {
 
     }
 
+
+    incrementPregnancy(): void {
+      this.pregancyPeriod ++;
+    }
+
+    setPregnancyToNill(): void {
+      this.pregancyPeriod = 0;
+    }
 
     inRange(value: number, rangeStart: number, rangeEnd: number):boolean {
       if ( Math.abs(value) >= rangeStart && Math.abs(value) <= rangeEnd )

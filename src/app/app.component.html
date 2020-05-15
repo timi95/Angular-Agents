@@ -85,6 +85,12 @@
         </p>
         <purple-walker></purple-walker>
     </div>
+    <div *ngSwitchCase="'orangeWalker'">
+        <p>
+            <span style="color: orange;"> Orange </span> walkers, in progress.... <br>
+        </p>
+        <orange-walker></orange-walker>
+    </div>
     <div *ngSwitchDefault>
         <p> 
             The <span style="color: red;"> Red </span> walkers move based on a timer, and all synchronised.
