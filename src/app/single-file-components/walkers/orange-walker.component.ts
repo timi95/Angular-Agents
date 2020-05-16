@@ -108,6 +108,10 @@ ngAfterViewInit(){
     }
 
     for (let square of this.squares) {
+        // limit population to a maximum of 10
+        if ( this.squares.length > 10 ){
+          this.squares.pop();
+        }        
         if (square.pregancyPeriod >= 10) {
             // add new square
             this.squares.push(new Square(this.ctx, this.width, this.height, 'orange', this.subjectLocationService));     
@@ -115,6 +119,8 @@ ngAfterViewInit(){
             square.setPregnancyToNill();
         }
     }
+
+
 }
 
  
