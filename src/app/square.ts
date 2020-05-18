@@ -273,7 +273,7 @@ export class Square {
         // this.drawWithCollision();
 
         if ( this.subjectLocationService ) {
-          this.subjectLocationNegatiation();
+          this.subjectLocationNegotiation();
         }
         this.draw();
         // console.log('x: ',this.x, 'y: ',this.y);
@@ -341,7 +341,7 @@ export class Square {
         }
 
         if ( this.subjectLocationService ) {
-          this.subjectLocationNegatiation();
+          this.subjectLocationNegotiation();
         }
         this.draw();
         // this.rotate((this.ctx.canvas.width/2), (this.ctx.canvas.height/2), this.x, this.y, 1);
@@ -368,7 +368,7 @@ export class Square {
       };
     }
 
-    subjectLocationNegatiation() {
+    subjectLocationNegotiation() {
       //step 1: push this location into a BehaviorSubject
       this.subjectLocationService.publishLocation(this.getSubjectLocation());
       
