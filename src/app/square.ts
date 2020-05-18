@@ -73,6 +73,14 @@ export class Square {
 
     }
     
+    incrementPregnancy(): void {
+      this.pregancyPeriod += 1;
+    }
+
+    setPregnancyToNill(): void {
+      this.pregancyPeriod = 0;
+    }
+
     decrementLifeSpan() {
       if(this.lifeSpan != 0){
         console.log(`current lifeSpan: ${this.lifeSpan}`);
@@ -383,7 +391,8 @@ export class Square {
               this.setColour("red");
 
               // count up to birth
-              setInterval( ()=> this.incrementPregnancy(), 1000);
+              // setInterval( ()=> this.incrementPregnancy(), 1000);
+              this.incrementPregnancy();
               
             } else {
               this.setColour(this.color_input);
@@ -394,13 +403,7 @@ export class Square {
     }
 
 
-    incrementPregnancy(): void {
-      this.pregancyPeriod ++;
-    }
 
-    setPregnancyToNill(): void {
-      this.pregancyPeriod = 0;
-    }
 
     inRange(value: number, rangeStart: number, rangeEnd: number):boolean {
       if ( Math.abs(value) >= rangeStart && Math.abs(value) <= rangeEnd )
