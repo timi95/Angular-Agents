@@ -22,7 +22,8 @@
         </a>
     </ul>
 </nav>
-<h1 style="text-align: center;">Hi there, and welcome to my page</h1>
+
+<h1 style="text-align: center;">Hi there, <br>I am Timi, and you are welcome to my page</h1>
 <h3 style="text-align: center;"> Scroll down and click reset on some of my canvas tinkerings</h3>
 <p class="center-larger"> Some info whilst you are here: <br> <br>
 
@@ -87,8 +88,16 @@
     </div>
     <div *ngSwitchCase="'orangeWalker'">
         <p>
-            <span style="color: orange;"> Orange </span> walkers, in progress.... <br>
+           The <span style="color: orange;"> Orange </span> walkers, give birth to another square when a certain number of collisions occurs.
         </p>
+        <div>
+            <ul style="list-style: none; line-height: 25px;">
+                <li> Each walker has a random life-span between one and ten seconds .</li>
+                <li> <span style="color: orange;"> Orange </span>  walker population is limited to a maximum of ten squares on the screen at a time. </li>
+            </ul>
+
+           I'm still tinkering with the birth and death settings to see what feels better.
+        </div>
         <orange-walker></orange-walker>
     </div>
     <div *ngSwitchDefault>
