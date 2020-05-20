@@ -112,7 +112,7 @@ ngAfterViewInit(){
         if ( this.squares.length > 10 ){
           this.squares.pop();
         }        
-        if (square.pregancyPeriod > 5) {
+        if (square.pregancyPeriod > 2) {
             // add new square
             this.squares.push(new Square(this.ctx, this.width, this.height, 'orange', this.subjectLocationService));     
             // set pregnancy counter back to zero

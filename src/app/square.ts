@@ -392,13 +392,15 @@ export class Square {
 
               // count up to birth
               // setInterval( ()=> this.incrementPregnancy(), 1000);
-              this.incrementPregnancy();
               
             } else {
               this.setColour(this.color_input);
             }
 
         }  });//subscription end
+
+        if( this.color == 'red')
+        this.incrementPregnancy();
 
     }
 
