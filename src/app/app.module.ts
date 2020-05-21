@@ -13,6 +13,7 @@ import { BlueWalker } from './single-file-components/walkers/blue-walker.compone
 import { GreenWalker } from './single-file-components/walkers/green-walker.component';
 import { PurpleWalker } from './single-file-components/walkers/purple-walker.component';
 import { OrangeWalker } from './single-file-components/walkers/orange-walker.component';
+import { OrangeOrTealWalker } from './single-file-components/walkers/orange-v-teal-walker.component copy';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OrangeWalker } from './single-file-components/walkers/orange-walker.com
     BlueWalker,
     GreenWalker,
     PurpleWalker,
-    OrangeWalker
+    OrangeWalker,
+    OrangeOrTealWalker
   ],
   imports: [ BrowserModule, FormsModule, AppRoutingModule, ReactiveFormsModule ],
   providers: [],

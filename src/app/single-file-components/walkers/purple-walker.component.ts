@@ -68,7 +68,7 @@ ngAfterViewInit(){
 
     // push squares into the squares array
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService, true));     
     }
 
     this.ngZone.runOutsideAngular(() => { this.animate();}  );
@@ -113,7 +113,7 @@ reset() {
     this.squares = [];
 
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, 'purple', this.subjectLocationService, true));     
     }
 
     this.squares.forEach( sq => {

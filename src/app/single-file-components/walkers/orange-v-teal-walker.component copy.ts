@@ -6,7 +6,7 @@ import { SubjectLocationService } from '../../subject-location.service';
 
 
 @Component({
-  selector: 'orange-walker',
+  selector: 'orange-or-teal-walker',
   styleUrls: [ '../../app.component.css' ],
   template:`
     <div>
@@ -24,7 +24,7 @@ import { SubjectLocationService } from '../../subject-location.service';
             `
     ]
 })
-export class OrangeWalker implements OnInit,OnDestroy {
+export class OrangeOrTealWalker implements OnInit,OnDestroy {
     @ViewChild('canvas', { static: true }) 
     private canvas: ElementRef<HTMLCanvasElement>;
     private ctx: CanvasRenderingContext2D ;
@@ -55,6 +55,13 @@ export class OrangeWalker implements OnInit,OnDestroy {
       
   }
 
+  orangeOrTeal(): string {
+    let colourArray:string[] = ['orange','teal'];
+    let randomSeed:number = Math.floor(Math.random()*colourArray.length);
+    // let randomSeed2:number = Math.floor(Math.random()*nameArray.length);
+
+    return `${colourArray[randomSeed]}`;
+  }
 
 ngAfterViewInit(){
 
@@ -68,16 +75,12 @@ ngAfterViewInit(){
 
     // push squares into the squares array
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'orange', this.subjectLocationService, true));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, this.orangeOrTeal(), this.subjectLocationService, true) );     
     }
 
     this.ngZone.runOutsideAngular(() => { this.animate();}  );
   }
   
-  
-  setNull():void {
-    
-  }
   
   
   animate() {  
@@ -114,7 +117,7 @@ ngAfterViewInit(){
         }        
         if (square.pregancyPeriod > 2) {
             // add new square
-            this.squares.push(new Square(this.ctx, this.width, this.height, 'orange', this.subjectLocationService, true));     
+            this.squares.push(new Square(this.ctx, this.width, this.height, this.orangeOrTeal(), this.subjectLocationService, true));     
             // set pregnancy counter back to zero
             square.setPregnancyToNill();
         }
@@ -128,12 +131,12 @@ reset() {
     this.squares = [];
 
     for (let index = 0; index < 3; index++) {
-      this.squares.push(new Square(this.ctx, this.width, this.height, 'orange', this.subjectLocationService, true));     
+      this.squares.push(new Square(this.ctx, this.width, this.height, this.orangeOrTeal(), this.subjectLocationService, true));     
     }
     this.squares.forEach( sq => {
       sq.resetPositions();
     });
-
+    
     this.ngZone.runOutsideAngular(() => this.animate());
     // this.animationFrameID = requestAnimationFrame(()=> this.animate() );
   }

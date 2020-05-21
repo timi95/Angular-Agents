@@ -36,7 +36,8 @@ export class Square {
       private width?:number, 
       private height?:number,
       private color_input?:string,
-      private subjectLocationService?: SubjectLocationService) {
+      private subjectLocationService?: SubjectLocationService,
+      private isMortal?:boolean) {
         this.uuid = uuid();
         setInterval( ()=> this.minMaxSetup(), 1000);
         setInterval( ()=> this.setRotationDegree(), 6000);
@@ -44,7 +45,7 @@ export class Square {
         this.pregancyPeriod = 0;
 
         this.lifeSpan = Math.floor(Math.random() * 10) + 1 ;
-        if(this.color_input == "purple" || this.color_input == 'orange')
+        if(this.isMortal )
         setInterval( ()=> this.decrementLifeSpan(), 1000);
         
         this.x = Math.floor(Math.random() * this.width-this.square_width) + 1 ;

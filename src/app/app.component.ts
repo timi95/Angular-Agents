@@ -17,7 +17,8 @@ export class AppComponent implements OnInit,OnDestroy {
     'blueWalker',
     'greenWalker',
     'purpleWalker',
-    'orangeWalker'
+    'orangeWalker',
+    'orangeOrTealWalker'
   ] ;
 
 
