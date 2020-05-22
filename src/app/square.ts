@@ -441,6 +441,10 @@ export class Square {
     setColour( setColour) {
       this.color = setColour ;
     }
+
+    getColour() {
+      return this.color;
+    }
   
     rotate(axisX:number, axisY:number, x:number, y:number, rotationAngleInDegrees:number ) {
       /**

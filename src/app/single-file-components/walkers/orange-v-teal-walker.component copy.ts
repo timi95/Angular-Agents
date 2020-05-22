@@ -73,7 +73,7 @@ ngAfterViewInit(){
     this.width = this.canvas.nativeElement.width;
     this.height = this.canvas.nativeElement.height;
 
-    // push squares into the squares array
+    // add squares into the squares array
     for (let index = 0; index < 3; index++) {
       this.squares.push(new Square(this.ctx, this.width, this.height, this.orangeOrTeal(), this.subjectLocationService, true) );     
     }
@@ -117,7 +117,7 @@ ngAfterViewInit(){
         }        
         if (square.pregancyPeriod > 2) {
             // add new square
-            this.squares.push(new Square(this.ctx, this.width, this.height, this.orangeOrTeal(), this.subjectLocationService, true));     
+            this.squares.push(new Square(this.ctx, this.width, this.height, square.getColour(), this.subjectLocationService, true));     
             // set pregnancy counter back to zero
             square.setPregnancyToNill();
         }
