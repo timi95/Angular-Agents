@@ -322,7 +322,7 @@ export class Square {
         }
 
 
-//.............
+//..............
         // boundary checks
         if (this.x < 0) {
             this.x = 0;
@@ -445,7 +445,8 @@ export class Square {
     getColour() {
       return this.color_input;
     }
-  
+
+
     rotate(axisX:number, axisY:number, x:number, y:number, rotationAngleInDegrees:number ) {
       /**
        * The first two parameters are the X and Y coordinates of the central point 
