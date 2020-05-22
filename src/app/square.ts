@@ -443,7 +443,7 @@ export class Square {
     }
 
     getColour() {
-      return this.color;
+      return this.color_input;
     }
   
     rotate(axisX:number, axisY:number, x:number, y:number, rotationAngleInDegrees:number ) {
