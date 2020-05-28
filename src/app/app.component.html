@@ -6,11 +6,11 @@
 
 <nav class="head-nav">
     <ul style="list-style-type: none;">
-        <a href="https://timi95.github.io">
-            <li class="nav-text"><strong> Home </strong></li>
+        <a href="https://github.com/timi95">
+            <li class="nav-text"><strong> Github</strong></li>
         </a>
         <a href="https://drive.google.com/file/d/1tvvD0RxJrs5yYr-Q89NVLNpw9Qc24ZcX/view?usp=sharing">
-            <li class="nav-text"><strong> Resume </strong></li>
+            <li class="nav-text"><strong> CV </strong></li>
         </a>
         <li class="nav-text"> <strong> <a style=" margin: 0px; padding: 0px;">Contact</a> | <b style="word-break:break-all;">timi.ogunkeye@gmail.com</b> </strong> </li>
 
@@ -25,18 +25,26 @@
 
 <h1 style="text-align: center;">Hi there, <br>I am Timi, and you are welcome to my page</h1>
 <h3 style="text-align: center;"> Scroll down and click reset on some of my canvas tinkerings</h3>
-<p class="center-larger"> Some info whilst you are here: <br> <br>
+<p class="center-larger"> 
+    Some info whilst you are here: <br> <br>
 
-    Commercially, I've worked as a frontend dev with angular, and backend with Java spring-boot, altogether I've been working for just over 3 years (Time flies, and bees, butterflys....) <br> <br>
+    Commercially, I've worked as a frontend developer using Angular, and as a backend developer with Java Spring.
+    <br>
+    Overall I've been working for just over 3 years (Time flies, and bees, butterflys....) 
+    <br> <br>
 
-    I wrap angular frontends in Electron to make them desktop apps, and I stick a Django backend on the end. <br>
-    As you can see, I do play around with javascript canvas animations. <br>
-    Although I don't have any C,or Dlang projects out in the wild (though I dearly wish I did), I use these languages personally to some effect. <br>
+    For my commissioned projects: 
+    <br> I make web applications with Angular, and Django.
+    <br> I make desktop applications with Electron.
+    <br> I can also work with GTK3+ Python bindings, for native desktop applications.
+    <br><br>
+
+    For more details refer to my <a href="https://drive.google.com/file/d/1tvvD0RxJrs5yYr-Q89NVLNpw9Qc24ZcX/view?usp=sharing">CV</a>.
+    You can also check out my  <a href="https://www.linkedin.com/in/timi-ogunkeye-7774ba66/">linkedIn</a> profile, or <a href="https://github.com/timi95">Github</a>.
     <br>
-    If I missed any details, refer to my resume, or if you came here from there, check out my  <a href="https://www.linkedin.com/in/timi-ogunkeye-7774ba66/">linkedIn</a> profile, or <a href="https://github.com/timi95">Github</a>.
     <br>
-    <br>
-    <i> I am absolutely open to commissions, so don't be shy and get in touch for a discussion !</i>
+    
+    <i> I am absolutely open to commissions, so don't be shy and get in touch  for a discussion ! (timi.ogunkeye@gmail.com)</i>
 </p>
 <!-- <app-circles></app-circles>
 <app-linear></app-linear>
@@ -49,7 +57,10 @@
 <div class="walker-row">
     <purple-walker></purple-walker>
 </div> -->
-
+<p> 
+    These canvas animations come from my project: <a href="https://github.com/timi95/Angular-Agents">Angular Agents</a> 
+    <br> Click Reset, and have some fun 😀 .
+</p>
 <div class="walker-display-frame">
     <select class="custom-select" (change)="changeWalkerDisplayType($event)" >
         <option value="" disabled>Choose WalkerDisplayType </option>
@@ -60,7 +71,7 @@
 <div class="walker-display-frame" [ngSwitch]="WalkerDisplayType">
     <div *ngSwitchCase="'redWalker'">
         <p> 
-            The <span style="color: red;"> Red </span> walkers move based on a timer, and all synchronised.
+            The <span style="color: red;"> Red </span> walkers utilise vector based movement, and are all time synchronised.
         </p>
         <app-walker-objectified></app-walker-objectified>
     </div>
@@ -102,18 +113,21 @@
     </div>
     <div *ngSwitchCase="'orangeOrTealWalker'">
         <p>
-           The <span style="color: orange;"> Orange </span> or <span style="color: teal;"> Teal </span> walkers in progress....
+           The <span style="color: orange;"> Orange </span> or <span style="color: teal;"> Teal </span> walkers inherit the colour from their parent.
+           <br>
+           The result is interestingly a mild drift effect which I intend to expand upon in the near future.
         </p>
 
         <orange-or-teal-walker></orange-or-teal-walker>
     </div>
     <div *ngSwitchDefault>
         <p> 
-            The <span style="color: red;"> Red </span> walkers move based on a timer, and all synchronised.
+            The <span style="color: red;"> Red </span> walkers utilise vector based movement, and are all time synchronised.
         </p>
         <app-walker-objectified></app-walker-objectified>
     </div>
 </div>
+<br>
 
 
 <!-- <router-outlet></router-outlet> -->
