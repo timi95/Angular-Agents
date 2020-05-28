@@ -77,7 +77,7 @@
     </div>
     <div *ngSwitchCase="'blueWalker'">
         <p>
-            The <span style="color: blue;"> Blue </span> walkers move to words a target, and change direction/targets once their initial target is reached.
+            The <span style="color: blue;"> Blue </span> walkers move towards a target, and change direction/targets once their initial target is reached.
         </p>
         <blue-walker></blue-walker>
     </div>
@@ -85,8 +85,7 @@
         <p>
             The <span style="color: green;"> Green </span> walkers implement a "collision". 
             <br> 
-            They change colour when they overlap...I realise it's a bit buggy, that's because I'm doing the check with RxJS.
-            <br>So, probably I've overlooked some asynchronous side-effects.
+            They change colour when they overlap.
         </p>
         <green-walker></green-walker>
     </div>
@@ -99,12 +98,12 @@
     </div>
     <div *ngSwitchCase="'orangeWalker'">
         <p>
-           The <span style="color: orange;"> Orange </span> walkers, give birth to another square when a certain number of collisions occurs.
+           The <span style="color: orange;"> Orange </span> walkers, give birth to another square when they reach a certain number of collisions.
         </p>
         <div>
             <ul style="list-style: none; line-height: 25px;">
-                <li> Each walker has a random life-span between one and ten seconds .</li>
-                <li> <span style="color: orange;"> Orange </span>  walker population is limited to a maximum of ten squares on the screen at a time. </li>
+                <li> Each walker has a random life-span ranged between one and ten seconds .</li>
+                <li> <span style="color: orange;"> Orange </span> walker population is limited to a maximum of ten squares on the screen at a time. </li>
             </ul>
 
            I'm still tinkering with the birth and death settings to see what feels better.
